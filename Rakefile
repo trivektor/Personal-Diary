@@ -35,6 +35,9 @@ Motion::Project::App.setup do |app|
 
   app.pods do
     pod 'Facebook-iOS-SDK'
+    pod 'RESideMenu'
+    pod 'FontAwesomeIconFactory'
+    pod 'FontAwesome+iOS'
   end
 
 end
