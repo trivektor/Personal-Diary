@@ -38,6 +38,7 @@ Motion::Project::App.setup do |app|
     pod 'RESideMenu'
     pod 'FontAwesomeIconFactory'
     pod 'FontAwesome+iOS'
+    pod 'AMScrollingNavbar'
   end
 
 end

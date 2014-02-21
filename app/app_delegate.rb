@@ -7,6 +7,10 @@ class AppDelegate
     @window.backgroundColor = UIColor.whiteColor
     @window.makeKeyAndVisible
 
+    blackColor = '#111'.uicolor
+    UINavigationBar.appearance.setTintColor(blackColor)
+    UIBarButtonItem.appearance.setTintColor(blackColor)
+
     @facebook = Facebook.alloc.initWithAppId(FACEBOOK_KEY, andDelegate:self)
 
     defaults = NSUserDefaults.standardUserDefaults
@@ -46,10 +50,10 @@ class AppDelegate
   end
 
   def redirectAfterLogin
-    navController = UINavigationController.alloc.initWithRootViewController(HomeController.new)
-    menuController = MenuController.alloc.init
-    sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
-    @window.rootViewController = sideMenuController
+    navController = UINavigationController.alloc.initWithRootViewController(StoriesController.new)
+    # menuController = MenuController.alloc.init
+    # sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
+    @window.rootViewController = navController
   end
 
 end
