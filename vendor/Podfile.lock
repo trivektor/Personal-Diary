@@ -17,64 +17,14 @@ PODS:
   - AFNetworking/Serialization (2.1.0)
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
-  - CMDQueryStringSerialization (0.1.0)
-  - cocoa-oauth (0.0.1):
-    - NSData+Base64 (~> 1.0)
-  - NSData+Base64 (1.0.0)
-  - ReactiveCocoa (2.2.3):
-    - ReactiveCocoa/Core
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/Core (2.2.3):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.2.3)
-  - SimpleAuth (0.3.2):
-    - SimpleAuth/Core
-    - SimpleAuth/DropboxWeb
-    - SimpleAuth/Facebook
-    - SimpleAuth/FacebookWeb
-    - SimpleAuth/FoursquareWeb
-    - SimpleAuth/Instagram
-    - SimpleAuth/Meetup
-    - SimpleAuth/Tumblr
-    - SimpleAuth/Twitter
-    - SimpleAuth/TwitterWeb
-  - SimpleAuth/Core (0.3.2):
-    - CMDQueryStringSerialization
-    - ReactiveCocoa
-  - SimpleAuth/DropboxWeb (0.3.2):
-    - SimpleAuth/Core
-  - SimpleAuth/Facebook (0.3.2):
-    - SimpleAuth/Core
-  - SimpleAuth/FacebookWeb (0.3.2):
-    - SimpleAuth/Core
-  - SimpleAuth/FoursquareWeb (0.3.2):
-    - SimpleAuth/Core
-  - SimpleAuth/Instagram (0.3.2):
-    - SimpleAuth/Core
-  - SimpleAuth/Meetup (0.3.2):
-    - SimpleAuth/Core
-  - SimpleAuth/Tumblr (0.3.2):
-    - cocoa-oauth
-    - SimpleAuth/Core
-  - SimpleAuth/Twitter (0.3.2):
-    - cocoa-oauth
-    - SimpleAuth/Core
-  - SimpleAuth/TwitterWeb (0.3.2):
-    - cocoa-oauth
-    - SimpleAuth/Core
+  - Facebook-iOS-SDK (3.12.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
-  - SimpleAuth
-  - SimpleAuth/Facebook
-  - SimpleAuth/Twitter
+  - Facebook-iOS-SDK
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
-  CMDQueryStringSerialization: f6118185b92689188026e648c4eb5e2c87b5835b
-  cocoa-oauth: 8f4c8b77c77ac660de37f8125557c4ec09b0118a
-  NSData+Base64: 4819562faee4544e3cf5703f2139820b09732b28
-  ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
-  SimpleAuth: 9bb929e4c09ef8ee7cf4cf0967eb45239455add5
+  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
 
 COCOAPODS: 0.29.0

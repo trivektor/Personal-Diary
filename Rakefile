@@ -26,14 +26,15 @@ Motion::Project::App.setup do |app|
     QuartzCore
     Security
     CoreAnimation
+    Social
+    AdSupport
+    Accounts
   ).each { |framework| app.frameworks << framework }
   
   app.info_plist['UIViewControllerBasedStatusBarAppearance'] = false
 
   app.pods do
-    pod 'SimpleAuth'
-    pod 'SimpleAuth/Facebook'
-    pod 'SimpleAuth/Twitter'
+    pod 'Facebook-iOS-SDK'
   end
 
 end
