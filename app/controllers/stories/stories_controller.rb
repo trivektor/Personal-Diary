@@ -27,6 +27,9 @@ class StoriesController < BaseController
   end
 
   def createStory
+    controller = UINavigationController.alloc.initWithRootViewController(NewStoryController.new)
+    controller.modalPresentationStyle = UIModalPresentationFormSheet
+    presentViewController(controller, animated: true, completion: nil)
   end
 
 end
