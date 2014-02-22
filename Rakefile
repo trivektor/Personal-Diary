@@ -39,6 +39,7 @@ Motion::Project::App.setup do |app|
     pod 'FontAwesomeIconFactory'
     pod 'FontAwesome+iOS'
     pod 'AMScrollingNavbar'
+    pod 'PSPDFTextView', :git => 'https://github.com/steipete/PSPDFTextView'
   end
 
 end
