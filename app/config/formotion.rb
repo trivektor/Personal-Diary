@@ -11,6 +11,7 @@ module Formotion
       auto_correction: 'no',
       auto_capitalization: 'none',
       selection_style: UITableViewCellSelectionStyleNone,
+      text_alignment: 'left',
       font: {
         name: 'HelveticaNeue-Thin',
         size: 17
@@ -18,8 +19,8 @@ module Formotion
     }
 
     def performHousekeepingTasks
-      self.view.setBackgroundColor(UIColor.whiteColor)
-      self.view.backgroundView = nil
+      view.setBackgroundColor(UIColor.whiteColor)
+      view.backgroundView = nil
     end
 
     def mergeRowOptions(options={})

@@ -11,16 +11,25 @@ class NewStoryController < Formotion::FormController
         {
           rows: [
             mergeRowOptions(
-              title: 'Title',
+              title: nil,
               key: 'title',
               type: 'string',
-              placeholder: 'Enter a title here...',
+              placeholder: 'Title...',
             ),
             mergeRowOptions(
-              title: 'Content',
+              title: nil,
               key: 'content',
               type: 'text',
               row_height: 300,
+              placeholder: 'Content...'
+            ),
+            mergeRowOptions(
+              title: 'Tags',
+              type: 'tags'
+            ),
+            mergeRowOptions(
+              title: 'Reset',
+              type: 'button'
             )
           ]
         }
@@ -34,12 +43,17 @@ class NewStoryController < Formotion::FormController
   def viewDidLoad
     super
     performHousekeepingTasks
-    navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'cancelStory')
-    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'trash', touchHandler: 'reset')
   end
 
   def performHousekeepingTasks
     navigationItem.title = 'New Story'
+    view.backgroundColor = '#fff'.uicolor
+
+    @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'hideKeyboard')
+    self.tableView.addGestureRecognizer(@gestureRecognizer)
+
+    navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'cancelStory')
+    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'createStory')
   end
 
   def cancelStory
@@ -47,10 +61,15 @@ class NewStoryController < Formotion::FormController
   end
 
   def createStory
+
   end
 
   def reset
     @textView.text = ''
+  end
+
+  def hideKeyboard
+    view.endEditing(true)
   end
 
 end
