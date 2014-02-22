@@ -47,6 +47,8 @@ GEM
     motion-cocoapods (1.4.0)
       cocoapods (>= 0.26.2)
     motion-require (0.0.7)
+    motion_data_wrapper (0.0.7)
+      bubble-wrap
     multi_json (1.8.4)
     nap (0.6.0)
     open4 (1.3.1)
@@ -66,5 +68,6 @@ DEPENDENCIES
   formotion (~> 1.7)
   motion-cocoapods
   motion-fontawesome!
+  motion_data_wrapper
   rake
   sugarcube
