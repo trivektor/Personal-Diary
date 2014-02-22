@@ -10,6 +10,9 @@ class AppDelegate
     blackColor = '#111'.uicolor
     UINavigationBar.appearance.setTintColor(blackColor)
     UIBarButtonItem.appearance.setTintColor(blackColor)
+    UINavigationBar.appearance.setTitleTextAttributes(
+      UITextAttributeFont => 'HelveticaNeue-Light'.uifont(22)
+    )
 
     @facebook = Facebook.alloc.initWithAppId(FACEBOOK_KEY, andDelegate:self)
 

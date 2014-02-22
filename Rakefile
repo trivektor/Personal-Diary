@@ -25,7 +25,6 @@ Motion::Project::App.setup do |app|
   %w(
     QuartzCore
     Security
-    CoreAnimation
     Social
     AdSupport
     Accounts
