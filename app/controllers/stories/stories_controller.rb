@@ -2,10 +2,10 @@ class StoriesController < BaseController
 
   ROW_HEIGHT = 64
   VIEW_BUTTON_TITLE_COLOR = '#fff'.uicolor
-  VIEW_BUTTON_BACKGROUND_COLOR = '#3498db'.uicolor
+  VIEW_BUTTON_BACKGROUND_COLOR = '#1ccaff'.uicolor
   VIEW_BUTTON_TITLE = 'view'
   DELETE_BUTTON_TITLE_COLOR = '#fff'.uicolor
-  DELETE_BUTTON_BACKGROUND_COLOR = '#e74c3c'.uicolor
+  DELETE_BUTTON_BACKGROUND_COLOR = '#ff312d'.uicolor
   DELETE_BUTTON_TITLE = 'delete'
 
   def viewDidLoad
@@ -88,6 +88,16 @@ class StoriesController < BaseController
 
   def tableView(tableView, backgroundColorForDeleteConfirmationButtonForRowAtIndexPath: indexPath)
     DELETE_BUTTON_BACKGROUND_COLOR
+  end
+
+  def tableView(tableView, moreOptionButtonPressedInRowAtIndexPath: indexPath)
+    story = tableView(tableView, storyForRowAtIndexPath: indexPath)
+    controller = StoryController.alloc.initWithStory(story)
+    navigationController.pushViewController(controller, animated: true)
+  end
+
+  def tableView(tableView, deleteOptionButtonPressedInRowAtIndexPath: indexPath)
+
   end
 
   def createStory

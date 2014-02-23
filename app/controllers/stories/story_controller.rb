@@ -1,4 +1,20 @@
 class StoryController < BaseController
+
+  attr_accessor :story
+
+  def initWithStory(story)
+    @story = story
+    self
+  end
+
+  def viewDidLoad
+    performHousekeepingTasks
+  end
+
+  def performHousekeepingTasks
+    navigationItem.title = 'Story'
+  end
+
 end
 
 class NewStoryController < Formotion::FormController
