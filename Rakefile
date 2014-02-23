@@ -28,6 +28,7 @@ Motion::Project::App.setup do |app|
     Social
     AdSupport
     Accounts
+    CoreData
   ).each { |framework| app.frameworks << framework }
   
   app.info_plist['UIViewControllerBasedStatusBarAppearance'] = false

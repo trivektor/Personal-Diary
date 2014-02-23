@@ -1,11 +1,15 @@
 class AppDelegate
 
+  include CDQ
+
   attr_accessor :window
 
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.backgroundColor = UIColor.whiteColor
     @window.makeKeyAndVisible
+
+    cdq.setup
 
     blackColor = '#111'.uicolor
     UINavigationBar.appearance.setTintColor(blackColor)

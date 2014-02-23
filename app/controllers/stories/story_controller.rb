@@ -5,8 +5,10 @@ class NewStoryController < Formotion::FormController
 
   include UIViewControllerExtension
 
+  attr_accessor :story, :form
+
   def init
-    form = Formotion::Form.new(
+    @form = Formotion::Form.new(
       sections: [
         {
           rows: [
@@ -36,8 +38,8 @@ class NewStoryController < Formotion::FormController
       ]
     )
 
-    form.on_submit { createStory }
-    super.initWithForm(form)
+    @form.on_submit { createStory }
+    super.initWithForm(@form)
   end
 
   def viewDidLoad
@@ -61,7 +63,9 @@ class NewStoryController < Formotion::FormController
   end
 
   def createStory
-
+    attrs = @form.render
+    Story.create(title: attrs[:title], content: attrs[:content], creation_date: Time.now)
+    cdq.save
   end
 
   def reset
