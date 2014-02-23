@@ -10,13 +10,7 @@ class AppDelegate
     @window.makeKeyAndVisible
 
     cdq.setup
-
-    blackColor = '#111'.uicolor
-    UINavigationBar.appearance.setTintColor(blackColor)
-    UIBarButtonItem.appearance.setTintColor(blackColor)
-    UINavigationBar.appearance.setTitleTextAttributes(
-      UITextAttributeFont => 'HelveticaNeue-Light'.uifont(22)
-    )
+    customizeAppearances
 
     @facebook = Facebook.alloc.initWithAppId(FACEBOOK_KEY, andDelegate:self)
 
@@ -36,6 +30,24 @@ class AppDelegate
     end
 
     true
+  end
+
+  def customizeAppearances
+    # UINavigationBar appearance
+    blackColor = '#111'.uicolor
+    UINavigationBar.appearance.setTintColor(blackColor)
+    UIBarButtonItem.appearance.setTintColor(blackColor)
+    UINavigationBar.appearance.setTitleTextAttributes(
+      UITextAttributeFont => 'HelveticaNeue-Light'.uifont(22)
+    )
+
+    # CRToastManager
+    CRToastManager.setDefaultOptions(
+      'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar,
+      'kCRToastFontKey' => 'HelveticaNeue-Light'.uifont(16),
+      'kCRToastTextColorKey' => '#fff'.uicolor,
+      'kCRToastBackgroundColorKey' => '#2ecc71'.uicolor
+    )
   end
 
   def fbDidLogin

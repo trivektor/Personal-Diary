@@ -39,6 +39,7 @@ Motion::Project::App.setup do |app|
     pod 'FontAwesomeIconFactory'
     pod 'FontAwesome+iOS'
     pod 'AMScrollingNavbar'
+    pod 'CRToast', '~> 0.0.5'
   end
 
 end

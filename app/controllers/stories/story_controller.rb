@@ -54,11 +54,11 @@ class NewStoryController < Formotion::FormController
     @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'hideKeyboard')
     self.tableView.addGestureRecognizer(@gestureRecognizer)
 
-    navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'cancelStory')
+    navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'createStory')
   end
 
-  def cancelStory
+  def dismiss
     dismissViewControllerAnimated(true, completion: nil)
   end
 
@@ -66,6 +66,17 @@ class NewStoryController < Formotion::FormController
     attrs = @form.render
     Story.create(title: attrs[:title], content: attrs[:content], creation_date: Time.now)
     cdq.save
+
+    CRToastManager.showNotificationWithOptions({
+      'kCRToastTextKey' => 'Post saved',
+      'kCRToastTextAlignmentKey' => NSTextAlignmentCenter,
+      'kCRToastAnimationInTypeKey' => CRToastAnimationTypeGravity,
+      'kCRToastAnimationOutTypeKey' => CRToastAnimationTypeGravity,
+      'kCRToastAnimationInDirectionKey' => CRToastAnimationDirectionLeft,
+      'kCRToastAnimationOutDirectionKey' => CRToastAnimationDirectionRight
+    }, completionBlock: -> {
+      dismiss
+    })
   end
 
   def reset
