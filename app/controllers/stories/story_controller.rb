@@ -51,7 +51,7 @@ class NewStoryController < Formotion::FormController
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
 
-    @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'hideKeyboard')
+    @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'dismissKeyboard')
     self.tableView.addGestureRecognizer(@gestureRecognizer)
 
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
@@ -63,6 +63,7 @@ class NewStoryController < Formotion::FormController
   end
 
   def createStory
+    dismissKeyboard
     attrs = @form.render
     Story.create(title: attrs['title'], content: attrs['content'], creation_date: Time.now)
     cdq.save
@@ -85,7 +86,7 @@ class NewStoryController < Formotion::FormController
     @textView.text = ''
   end
 
-  def hideKeyboard
+  def dismissKeyboard
     view.endEditing(true)
   end
 
