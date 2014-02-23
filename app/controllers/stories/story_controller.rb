@@ -64,7 +64,7 @@ class NewStoryController < Formotion::FormController
 
   def createStory
     attrs = @form.render
-    Story.create(title: attrs[:title], content: attrs[:content], creation_date: Time.now)
+    Story.create(title: attrs['title'], content: attrs['content'], creation_date: Time.now)
     cdq.save
 
     CRToastManager.showNotificationWithOptions({
@@ -77,6 +77,8 @@ class NewStoryController < Formotion::FormController
     }, completionBlock: -> {
       dismiss
     })
+
+    'StoryCreated'.post_notification
   end
 
   def reset
