@@ -41,6 +41,7 @@ Motion::Project::App.setup do |app|
     pod 'AMScrollingNavbar'
     pod 'CRToast'
     pod 'MSCMoreOptionTableViewCell'
+    pod 'CXAlertView'
   end
 
 end

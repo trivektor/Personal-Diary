@@ -19,6 +19,7 @@ PODS:
     - AFNetworking/NSURLConnection
   - AMScrollingNavbar (0.5.4)
   - CRToast (0.0.5)
+  - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.12.0)
   - FontAwesome+iOS (0.1.1)
   - FontAwesomeIconFactory (1.3)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
   - AMScrollingNavbar
   - CRToast
+  - CXAlertView
   - Facebook-iOS-SDK
   - FontAwesome+iOS
   - FontAwesomeIconFactory
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   AMScrollingNavbar: f94a15ec7abcd19b796498ed854d90f647582fd5
   CRToast: 5be332fb9f4bcfd3023b6f10324ed9738c35cb96
+  CXAlertView: 59e8305700c59a27730c636765cb76311d311b88
   Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
   FontAwesome+iOS: 243c5309e90d5788909b0f859f75ecff4a20f88f
   FontAwesomeIconFactory: eb4101e952987a817b1f37b73f45cd59acb1a0bb

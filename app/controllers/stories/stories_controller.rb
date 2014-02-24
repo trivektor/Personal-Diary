@@ -59,7 +59,21 @@ class StoriesController < BaseController
   end
 
   def tableView(tableView, commitEditingStyle: editingStyle, forRowAtIndexPath: indexPath)
-    # TO BE IMPLEMENTED
+    @deleteConfirmDialog = CXAlertView.alloc.initWithTitle(
+      'Wait!',
+      message: 'Are you sure you want to delete this story?',
+      cancelButtonTitle: 'Cancel'
+    )
+
+    @deleteConfirmDialog.addButtonWithTitle(
+      'OK',
+      type: CXAlertViewButtonTypeDefault,
+      handler: lambda do |alertView, button|
+        tableView(tableView, deleteStoryAtIndexPath: indexPath)
+        @deleteConfirmDialog.dismiss
+      end
+    )
+    @deleteConfirmDialog.show
   end
 
   def tableView(tableView, editingStyleForRowAtIndexPath: indexPath)
@@ -96,8 +110,11 @@ class StoriesController < BaseController
     navigationController.pushViewController(controller, animated: true)
   end
 
-  def tableView(tableView, deleteOptionButtonPressedInRowAtIndexPath: indexPath)
-
+  def tableView(tableView, deleteStoryAtIndexPath: indexPath)
+    story = tableView(tableView, storyForRowAtIndexPath: indexPath)
+    story.destroy
+    cdq.save
+    reload
   end
 
   def createStory
