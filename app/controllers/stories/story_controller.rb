@@ -21,11 +21,13 @@ class NewStoryController < Formotion::FormController
 
   include UIViewControllerExtension
 
-  attr_accessor :story, :form, :speechSDK, :speechRecognition
+  SPEECH_TIMEOUT = 20
+
+  attr_accessor :story, :form, :speechSDK, :speechRecognition, :titleTextField, :contentTextView
 
   def init
     setupSpeechRecognition
-    @form = Formotion::Form.new(
+    @form ||= Formotion::Form.new(
       sections: [
         {
           rows: [
@@ -55,6 +57,7 @@ class NewStoryController < Formotion::FormController
       ]
     )
 
+
     @form.on_submit { createStory }
     super.initWithForm(@form)
   end
@@ -64,11 +67,10 @@ class NewStoryController < Formotion::FormController
     @speechSDK.APIKey = ISPEECH_API_KEY
     @speechRecognition = ISSpeechRecognition.alloc.init
     @speechRecognition.delegate = self
-    @speechRecognition.listenAndRecognizeWithTimeout(10, error: nil)
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    puts result.inspect
+    @contentTextView.value += result.text
   end
 
   def viewDidLoad
@@ -80,15 +82,15 @@ class NewStoryController < Formotion::FormController
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
 
+    section = @form.sections[0]
+    @titleTextField ||= section.rows[0]
+    @contentTextView ||= section.rows[1]
+
     @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'dismissKeyboard')
     self.tableView.addGestureRecognizer(@gestureRecognizer)
 
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
-    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'createStory')
-  end
-
-  def dismiss
-    dismissViewControllerAnimated(true, completion: nil)
+    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'microphone', touchHandler: 'recordContent')
   end
 
   def createStory
@@ -115,8 +117,16 @@ class NewStoryController < Formotion::FormController
     @textView.text = ''
   end
 
+  def dismiss
+    dismissViewControllerAnimated(true, completion: nil)
+  end
+
   def dismissKeyboard
     view.endEditing(true)
+  end
+
+  def recordContent
+    @speechRecognition.listenAndRecognizeWithTimeout(SPEECH_TIMEOUT, error: nil)
   end
 
 end

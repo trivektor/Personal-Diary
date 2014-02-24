@@ -11,7 +11,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Personal-Diary'
-  app.identifier = 'com.personaldiary'
+  app.identifier = 'com.personaldiary.'
   
   app.device_family = [:iphone]
   app.sdk_version = '7.0'
@@ -21,6 +21,10 @@ Motion::Project::App.setup do |app|
   app.prerendered_icon = true
   app.interface_orientations = [:portrait]
 
+  app.entitlements['keychain-access-groups'] = [
+    app.seed_id + '.' + app.identifier
+  ]
+
   app.vendor_project('vendor/iSpeechSDK', :static, :products => ["libiSpeechSDK.a"], :headers_dir => "Headers")
 
   # Frameworks
@@ -28,6 +32,7 @@ Motion::Project::App.setup do |app|
     UIKit
     CoreFoundation
     CoreGraphics
+    CoreMedia
     SystemConfiguration
     QuartzCore
     Security
