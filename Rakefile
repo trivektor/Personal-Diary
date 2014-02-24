@@ -42,6 +42,7 @@ Motion::Project::App.setup do |app|
     pod 'CRToast'
     pod 'MSCMoreOptionTableViewCell'
     pod 'CXAlertView'
+    pod 'NSDate+TimeAgo'
   end
 
 end

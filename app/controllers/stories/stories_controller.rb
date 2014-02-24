@@ -1,12 +1,14 @@
 class StoriesController < BaseController
 
-  ROW_HEIGHT = 64
+  ROW_HEIGHT = 70
   VIEW_BUTTON_TITLE_COLOR = '#fff'.uicolor
   VIEW_BUTTON_BACKGROUND_COLOR = '#1ccaff'.uicolor
   VIEW_BUTTON_TITLE = 'view'
   DELETE_BUTTON_TITLE_COLOR = '#fff'.uicolor
   DELETE_BUTTON_BACKGROUND_COLOR = '#ff312d'.uicolor
   DELETE_BUTTON_TITLE = 'delete'
+  TITLE_FONT = 'HelveticaNeue-Thin'.uifont(20)
+  CREATION_DATE_FONT = 'HelveticaNeue-Thin'.uifont(14)
 
   def viewDidLoad
     @stories = Story.all
@@ -44,7 +46,9 @@ class StoriesController < BaseController
     end
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     cell.textLabel.text = story.title
-    cell.detailTextLabel.text = story.content
+    cell.textLabel.font = TITLE_FONT
+    cell.detailTextLabel.text = story.creationTimeAgo
+    cell.detailTextLabel.font = CREATION_DATE_FONT
     cell.selectionStyle = UITableViewCellSelectionStyleNone
     cell.delegate = self
     cell
