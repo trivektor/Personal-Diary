@@ -21,16 +21,26 @@ Motion::Project::App.setup do |app|
   app.prerendered_icon = true
   app.interface_orientations = [:portrait]
 
+  app.vendor_project('vendor/iSpeechSDK', :static, :products => ["libiSpeechSDK.a"], :headers_dir => "Headers")
+
   # Frameworks
   %w(
+    UIKit
+    CoreFoundation
+    CoreGraphics
+    SystemConfiguration
     QuartzCore
     Security
     Social
     AdSupport
     Accounts
     CoreData
+    AudioToolbox
+    AVFoundation
+    CFNetwork
+    Security
   ).each { |framework| app.frameworks << framework }
-  
+
   app.info_plist['UIViewControllerBasedStatusBarAppearance'] = false
 
   app.pods do

@@ -1,0 +1,198 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<constant const='true' declared_type='NSString*' name='SKDictationRecognizerType' type='@'/>
+<constant const='true' declared_type='NSString*' name='SKSearchRecognizerType' type='@'/>
+<constant const='true' declared_type='NSString*' name='SKSpeechErrorDomain' type='@'/>
+<constant const='true' declared_type='unsigned char*' name='SpeechKitApplicationKey' type='^C'/>
+<enum name='SKCancelRecordingEarconType' value='3'/>
+<enum name='SKCancelledError' value='5'/>
+<enum name='SKLongEndOfSpeechDetection' value='3'/>
+<enum name='SKNoEndOfSpeechDetection' value='1'/>
+<enum name='SKPermissionError' value='8'/>
+<enum name='SKRecognizerError' value='3'/>
+<enum name='SKServerConnectionError' value='1'/>
+<enum name='SKServerRetryError' value='2'/>
+<enum name='SKShortEndOfSpeechDetection' value='2'/>
+<enum name='SKStartRecordingEarconType' value='1'/>
+<enum name='SKStopRecordingEarconType' value='2'/>
+<enum name='SKVocalizerError' value='4'/>
+<class name='NSObject'>
+<method selector='destroyed'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizer:didFinishWithError:suggestion:'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<arg declared_type='NSError*' index='1' name='error' type='@'/>
+<arg declared_type='NSString*' index='2' name='suggestion' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizer:didFinishWithResults:'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<arg declared_type='SKRecognition*' index='1' name='results' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizerDidBeginRecording:'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizerDidFinishRecording:'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='vocalizer:didFinishSpeakingString:withError:'>
+<arg declared_type='SKVocalizer*' index='0' name='vocalizer' type='@'/>
+<arg declared_type='NSString*' index='1' name='text' type='@'/>
+<arg declared_type='NSError*' index='2' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='vocalizer:willBeginSpeakingString:'>
+<arg declared_type='SKVocalizer*' index='0' name='vocalizer' type='@'/>
+<arg declared_type='NSString*' index='1' name='text' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='SKEarcon'>
+<method class_method='true' selector='earconWithName:'>
+<arg declared_type='NSString*' index='0' name='name' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='initWithContentsOfFile:'>
+<arg declared_type='NSString*' index='0' name='path' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<class name='SKRecognition'>
+<method selector='data'>
+<retval declared_type='NSObject*' type='@'/>
+</method>
+<method selector='firstResult'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='results'>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method selector='scores'>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method selector='setData2:'>
+<arg declared_type='NSObject*' index='0' name='data' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setResult2:'>
+<arg declared_type='NSArray*' index='0' name='results' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setScores2:'>
+<arg declared_type='NSArray*' index='0' name='scores' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setSuggestion2:'>
+<arg declared_type='NSString*' index='0' name='suggestion' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='suggestion'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<class name='SKRecognizer'>
+<method selector='audioLevel'>
+<retval declared_type='float' type='f'/>
+</method>
+<method selector='cancel'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='initWithType:detection:language:delegate:'>
+<arg declared_type='NSString*' index='0' name='type' type='@'/>
+<arg declared_type='SKEndOfSpeechDetection' index='1' name='detection' type='I' type64='Q'/>
+<arg declared_type='NSString*' index='2' name='language' type='@'/>
+<arg declared_type='id' index='3' name='delegate' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='stopRecording'>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='SKVocalizer'>
+<method selector='cancel'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='initWithLanguage:delegate:'>
+<arg declared_type='NSString*' index='0' name='language' type='@'/>
+<arg declared_type='id' index='1' name='delegate' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='initWithVoice:delegate:'>
+<arg declared_type='NSString*' index='0' name='voice' type='@'/>
+<arg declared_type='id' index='1' name='delegate' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='speakMarkupString:'>
+<arg declared_type='NSString*' index='0' name='markup' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='speakString:'>
+<arg declared_type='NSString*' index='0' name='text' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='SpeechKit'>
+<method class_method='true' selector='destroy'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='sessionID'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='setEarcon:forType:'>
+<arg declared_type='SKEarcon*' index='0' name='earcon' type='@'/>
+<arg declared_type='SKEarconType' index='1' name='type' type='I' type64='Q'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupWithID:host:port:useSSL:delegate:'>
+<arg declared_type='NSString*' index='0' name='ID' type='@'/>
+<arg declared_type='NSString*' index='1' name='host' type='@'/>
+<arg declared_type='long' index='2' name='port' type='l' type64='q'/>
+<arg declared_type='BOOL' index='3' name='useSSL' type='B'/>
+<arg declared_type='id' index='4' name='delegate' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<informal_protocol name='SKRecognizerDelegate'>
+<method selector='recognizer:didFinishWithError:suggestion:' type='v20@0:4@8@12@16' type64='v40@0:8@16@24@32'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<arg declared_type='NSError*' index='1' name='error' type='@'/>
+<arg declared_type='NSString*' index='2' name='suggestion' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizer:didFinishWithResults:' type='v16@0:4@8@12' type64='v32@0:8@16@24'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<arg declared_type='SKRecognition*' index='1' name='results' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizerDidBeginRecording:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='recognizerDidFinishRecording:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='SKRecognizer*' index='0' name='recognizer' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+<informal_protocol name='SKVocalizerDelegate'>
+<method selector='vocalizer:didFinishSpeakingString:withError:' type='v20@0:4@8@12@16' type64='v40@0:8@16@24@32'>
+<arg declared_type='SKVocalizer*' index='0' name='vocalizer' type='@'/>
+<arg declared_type='NSString*' index='1' name='text' type='@'/>
+<arg declared_type='NSError*' index='2' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='vocalizer:willBeginSpeakingString:' type='v16@0:4@8@12' type64='v32@0:8@16@24'>
+<arg declared_type='SKVocalizer*' index='0' name='vocalizer' type='@'/>
+<arg declared_type='NSString*' index='1' name='text' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+<informal_protocol name='SpeechKitDelegate'>
+<method selector='destroyed' type='v8@0:4' type64='v16@0:8'>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+</signatures>

@@ -21,9 +21,10 @@ class NewStoryController < Formotion::FormController
 
   include UIViewControllerExtension
 
-  attr_accessor :story, :form
+  attr_accessor :story, :form, :speechSDK, :speechRecognition
 
   def init
+    setupSpeechRecognition
     @form = Formotion::Form.new(
       sections: [
         {
@@ -56,6 +57,18 @@ class NewStoryController < Formotion::FormController
 
     @form.on_submit { createStory }
     super.initWithForm(@form)
+  end
+
+  def setupSpeechRecognition
+    @speechSDK = NSClassFromString('iSpeechSDK').sharedSDK
+    @speechSDK.APIKey = ISPEECH_API_KEY
+    @speechRecognition = ISSpeechRecognition.alloc.init
+    @speechRecognition.delegate = self
+    @speechRecognition.listenAndRecognizeWithTimeout(10, error: nil)
+  end
+
+  def recognition(speechRecognition, didGetRecognitionResult: result)
+    puts result.inspect
   end
 
   def viewDidLoad
