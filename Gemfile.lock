@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:trivektor/fontawesome.git
-  revision: aff16b39d07a73099718cfd894fa91a8b6aafe46
+  revision: 8b2e214c2b2c4d1f48437f0ed9184c3e8f328122
   specs:
     motion-fontawesome (0.0.2)
       rake
