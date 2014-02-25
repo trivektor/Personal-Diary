@@ -65,12 +65,10 @@ class NewStoryController < Formotion::FormController
   def setupSpeechRecognition
     @speechSDK = NSClassFromString('iSpeechSDK').sharedSDK
     @speechSDK.APIKey = ISPEECH_API_KEY
-    @speechRecognition = ISSpeechRecognition.alloc.init
-    @speechRecognition.delegate = self
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @contentTextView.value += result.text
+    @contentTextView.value = @contentTextView.value.to_s + result.text.to_s
   end
 
   def viewDidLoad
@@ -126,7 +124,10 @@ class NewStoryController < Formotion::FormController
   end
 
   def recordContent
-    @speechRecognition.listenAndRecognizeWithTimeout(SPEECH_TIMEOUT, error: nil)
+    @speechRecognition = ISSpeechRecognition.alloc.init
+    @speechRecognition.delegate = self
+    #@speechRecognition.listenAndRecognizeWithTimeout(SPEECH_TIMEOUT, error: nil)
+    @speechRecognition.listen(nil)
   end
 
 end
