@@ -57,6 +57,10 @@ class NewStoryController < Formotion::FormController
       ]
     )
 
+    @form.sections.first.rows.last.on_tap do |row|
+      @titleTextField.value = ''
+      @contentTextView.value = ''
+    end
 
     @form.on_submit { createStory }
     super.initWithForm(@form)
@@ -84,6 +88,8 @@ class NewStoryController < Formotion::FormController
     @titleTextField ||= section.rows[0]
     @contentTextView ||= section.rows[1]
 
+    section.rows.last.on_tap { |row| }
+
     @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'dismissKeyboard')
     self.tableView.addGestureRecognizer(@gestureRecognizer)
 
@@ -109,10 +115,6 @@ class NewStoryController < Formotion::FormController
     })
 
     'StoryCreated'.post_notification
-  end
-
-  def reset
-    @textView.text = ''
   end
 
   def dismiss
