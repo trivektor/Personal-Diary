@@ -29,6 +29,7 @@ module UIViewControllerExtension
   def createWebView(options={})
     webView = UIWebView.alloc.initWithFrame(options[:frame] || self.view.bounds)
     webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+    webView.backgroundColor = options[:background_color] || '#fff'.uicolor
     webView.delegate = self
     webView
   end
