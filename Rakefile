@@ -58,6 +58,8 @@ Motion::Project::App.setup do |app|
     pod 'MSCMoreOptionTableViewCell'
     pod 'CXAlertView'
     pod 'NSDate+TimeAgo'
+    pod 'WebViewJavascriptBridge'
+    pod 'GRMustache'
   end
 
 end

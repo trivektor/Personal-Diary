@@ -1,0 +1,54 @@
+body {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.btn {
+  border-radius: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.3em;
+  border: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.btn-primary {
+  background: #1ccaff;
+  border: none;
+}
+
+.btn-danger {
+  background: #ff312d;
+  border: none;
+}
+
+.form-control {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.form-control:focus,
+.form-control:active {
+  outline: none;
+  box-shadow: none;
+}
+
+#story-form {
+  padding-left: 16px;
+}
+
+#story-form .form-group {
+  border-top: 1px solid rgba(224, 224, 224, 1);
+  margin-bottom: 0;
+  padding: 6px 0;
+}
+
+#submit {
+  width: 100%;
+}

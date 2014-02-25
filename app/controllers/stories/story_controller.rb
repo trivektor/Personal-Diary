@@ -17,53 +17,18 @@ class StoryController < BaseController
 
 end
 
-class NewStoryController < Formotion::FormController
+class NewStoryController < BaseController
 
   include UIViewControllerExtension
 
   SPEECH_TIMEOUT = 20
+  TEMPLATE = 'templates/new_story'
 
   attr_accessor :story, :form, :speechSDK, :speechRecognition, :titleTextField, :contentTextView
 
   def init
     setupSpeechRecognition
-    @form ||= Formotion::Form.new(
-      sections: [
-        {
-          rows: [
-            mergeRowOptions(
-              title: nil,
-              key: 'title',
-              type: 'string',
-              placeholder: 'Title...',
-            ),
-            mergeRowOptions(
-              title: nil,
-              key: 'content',
-              type: 'text',
-              row_height: 300,
-              placeholder: 'Content...'
-            ),
-            mergeRowOptions(
-              title: 'Tags',
-              type: 'tags'
-            ),
-            mergeRowOptions(
-              title: 'Reset',
-              type: 'button'
-            )
-          ]
-        }
-      ]
-    )
-
-    @form.sections.first.rows.last.on_tap do |row|
-      @titleTextField.value = ''
-      @contentTextView.value = ''
-    end
-
-    @form.on_submit { createStory }
-    super.initWithForm(@form)
+    self
   end
 
   def setupSpeechRecognition
@@ -72,34 +37,35 @@ class NewStoryController < Formotion::FormController
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @contentTextView.value = @contentTextView.value.to_s + result.text.to_s
+    @javascriptBridge.send(recognized_text: result.text)
   end
 
   def viewDidLoad
-    super
     performHousekeepingTasks
+    setupWebViewForm
+    setupJavascriptBridge
   end
 
   def performHousekeepingTasks
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
-
-    section = @form.sections[0]
-    @titleTextField ||= section.rows[0]
-    @contentTextView ||= section.rows[1]
-
-    section.rows.last.on_tap { |row| }
-
-    @gestureRecognizer = UITapGestureRecognizer.alloc.initWithTarget(self, action: 'dismissKeyboard')
-    self.tableView.addGestureRecognizer(@gestureRecognizer)
-
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'microphone', touchHandler: 'recordContent')
   end
 
+  def setupWebViewForm
+    @webView = createWebView
+    view.addSubview(@webView)
+    html = loadTemplate(TEMPLATE)
+    @webView.loadHTMLString(html, baseURL: NSURL.fileURLWithPath(NSBundle.mainBundle.bundlePath))
+  end
+
+  def setupJavascriptBridge
+    @javascriptBridge = WebViewJavascriptBridge.bridgeForWebView(@webView, handler: nil)
+  end
+
   def createStory
     dismissKeyboard
-    attrs = @form.render
     Story.create(title: attrs['title'], content: attrs['content'], creation_date: Time.now)
     cdq.save
 

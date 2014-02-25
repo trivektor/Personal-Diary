@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='bootstrap.css'>
+    <link rel='stylesheet' type='text/css' href='customizations.css'>
+    <link rel='stylesheet' type='text/css' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+  </head>
+  <body>
+    <div id='story-form'>
+      <div class='form-group'>
+        <label class='sr-only'>Title</label>
+        <input id='title' type='text' class='form-control' autocorrect='off' spellcheck='false' placeholder='Title of your story...' />
+      </div>
+      <div class='form-group'>
+        <label class='sr-only'>Content</label>
+        <textarea id='content' class='form-control' rows='8' autocorrect='off' spellcheck='false' placeholder='Content of your story...'></textarea>
+      </div>
+      <div class='form-group text-right'>
+        <button id='submit' type='button' class='btn btn-default'>Post</button>
+      </div>
+    </div>
+    <script>
+      var title = document.getElementById('title');
+      var content = document.getElementById('content');
+
+      function connectWebViewJavascriptBridge(callback) {
+          if (window.WebViewJavascriptBridge) {
+              callback(WebViewJavascriptBridge)
+          } else {
+              document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                  callback(WebViewJavascriptBridge)
+              }, false)
+          }
+      }
+
+      connectWebViewJavascriptBridge(function(bridge) {
+          bridge.init(function(message, responseCallback) {
+            content.value += (content.value || '') + message.recognized_text;
+          })
+      })
+    </script>
+  </body>
+</html>

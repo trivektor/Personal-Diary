@@ -55,10 +55,10 @@ module UIViewControllerExtension
     optionsMenu
   end
 
-  def loadTemplate(path, type='mustache')
+  def loadTemplate(path, data={}, type='mustache')
     file = NSBundle.mainBundle.pathForResource(path, ofType: type)
     html = NSString.stringWithContentsOfFile(file, encoding: NSUTF8StringEncoding, error: nil)
-    GRMustacheTemplate.templateFromString(html, error: nil)
+    GRMustacheTemplate.renderObject(NSDictionary.dictionaryWithDictionary(data), fromString: html, error: nil)
   end
 
   def showProgress
