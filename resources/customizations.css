@@ -1,6 +1,6 @@
 body {
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .btn {
@@ -46,7 +46,7 @@ body {
 #story-form .form-group {
   border-top: 1px solid rgba(224, 224, 224, 1);
   margin-bottom: 0;
-  padding: 6px 0;
+  padding: 7px 0;
 }
 
 #submit {

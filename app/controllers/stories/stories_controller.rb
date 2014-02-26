@@ -1,5 +1,7 @@
 class StoriesController < BaseController
 
+  attr_accessor :table, :stories
+
   ROW_HEIGHT = 70
   VIEW_BUTTON_TITLE_COLOR = '#fff'.uicolor
   VIEW_BUTTON_BACKGROUND_COLOR = '#1ccaff'.uicolor
@@ -7,7 +9,7 @@ class StoriesController < BaseController
   DELETE_BUTTON_TITLE_COLOR = '#fff'.uicolor
   DELETE_BUTTON_BACKGROUND_COLOR = '#ff312d'.uicolor
   DELETE_BUTTON_TITLE = 'delete'
-  TITLE_FONT = 'HelveticaNeue-Thin'.uifont(20)
+  TITLE_FONT = 'HelveticaNeue-Light'.uifont(17)
   CREATION_DATE_FONT = 'HelveticaNeue-Thin'.uifont(14)
 
   def viewDidLoad
@@ -17,15 +19,23 @@ class StoriesController < BaseController
   end
 
   def performHousekeepingTasks
-    navigationItem.title = 'Stories'
+    updateTitle
     @table = createTable
     view.addSubview(@table)
+    initAMScrollingNavbar(@table)
+    createBarButtonItems
+  end
 
+  def createBarButtonItems
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'pencil', touchHandler: 'createStory')
   end
 
   def registerEvents
     'StoryCreated'.add_observer(self, 'reload')
+  end
+
+  def updateTitle
+    navigationItem.title = "Stories (#{@stories.count})"
   end
 
   def numberOfSectionInTableView(tableView)
@@ -129,6 +139,7 @@ class StoriesController < BaseController
 
   def reload
     @table.reloadData
+    updateTitle
   end
 
 end

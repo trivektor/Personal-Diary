@@ -9,11 +9,9 @@ class BaseController < AMScrollingNavbarViewController
     end
   end
 
-  def initAMScrollingNavbar
-    if @table
-      navigationController.navigationBar.translucent = false
-      followScrollView(@table)
-    end
+  def initAMScrollingNavbar(table)
+    navigationController.navigationBar.translucent = false
+    followScrollView(table)
   end
 
   def showMenu
