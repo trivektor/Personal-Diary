@@ -61,12 +61,13 @@ class NewStoryController < BaseController
   end
 
   def setupJavascriptBridge
-    @javascriptBridge = WebViewJavascriptBridge.bridgeForWebView(@webView, handler: nil)
+    @jsBridge = WebViewJavascriptBridge.bridgeForWebView(@webView, webViewDelegate: self, handler: lambda { |data, callback|
+      createStory(data)
+    })
   end
 
-  def createStory
-    dismissKeyboard
-    Story.create(title: attrs['title'], content: attrs['content'], creation_date: Time.now)
+  def createStory(attrs={})
+    Story.create(attrs.merge(creation_date: Time.now))
     cdq.save
 
     CRToastManager.showNotificationWithOptions({

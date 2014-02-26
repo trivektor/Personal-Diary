@@ -17,28 +17,29 @@
         <textarea id='content' class='form-control' rows='8' autocorrect='off' spellcheck='false' placeholder='Content of your story...'></textarea>
       </div>
       <div class='form-group text-right'>
-        <button id='submit' type='button' class='btn btn-default'>Post</button>
+        <button id='submit-btn' type='button' class='btn btn-default'>Post</button>
       </div>
     </div>
     <script>
       var title = document.getElementById('title');
       var content = document.getElementById('content');
+      var submitBtn = document.getElementById('submit-btn');
+      var jsBridge;
 
-      function connectWebViewJavascriptBridge(callback) {
-          if (window.WebViewJavascriptBridge) {
-              callback(WebViewJavascriptBridge)
-          } else {
-              document.addEventListener('WebViewJavascriptBridgeReady', function() {
-                  callback(WebViewJavascriptBridge)
-              }, false)
-          }
-      }
+      document.addEventListener('WebViewJavascriptBridgeReady', function(event) {
+        jsBridge = event.bridge;
 
-      connectWebViewJavascriptBridge(function(bridge) {
-          bridge.init(function(message, responseCallback) {
-            content.value += (content.value || '') + message.recognized_text;
-          })
-      })
+        jsBridge.init(function(message, responseCallback) {
+          content.value += (content.value || '') + message.recognized_text;
+        });
+
+        submitBtn.addEventListener('click', function() {
+          jsBridge.send({
+            title: title.value || 'Untitled',
+            content: content.value
+          });
+        }, false);
+      });
     </script>
   </body>
 </html>
