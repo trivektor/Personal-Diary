@@ -2,7 +2,7 @@ class AppDelegate
 
   include CDQ
 
-  attr_accessor :window
+  attr_accessor :window, :facebook
 
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
@@ -34,11 +34,11 @@ class AppDelegate
 
   def customizeAppearances
     # UINavigationBar appearance
-    blackColor = '#111'.uicolor
-    UINavigationBar.appearance.setTintColor(blackColor)
-    UIBarButtonItem.appearance.setTintColor(blackColor)
+    UINavigationBar.appearance.setBarTintColor(NAVBAR_TINT_COLOR)
+    UIBarButtonItem.appearance.setTintColor(NAVBAR_FONT_COLOR)
     UINavigationBar.appearance.setTitleTextAttributes(
-      UITextAttributeFont => 'HelveticaNeue-Light'.uifont(22)
+      UITextAttributeFont => NAVBAR_FONT,
+      NSForegroundColorAttributeName => NAVBAR_FONT_COLOR
     )
 
     # CRToastManager

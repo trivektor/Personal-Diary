@@ -41,7 +41,7 @@ module UIViewControllerExtension
 
     btn.setTitleTextAttributes({
       UITextAttributeFont => FontAwesome.fontWithSize(options[:size] || 20),
-      UITextAttributeTextColor => (options[:color] || :black).uicolor
+      UITextAttributeTextColor => (options[:color] || NAVBAR_FONT_COLOR).uicolor
     }, forState: UIControlStateNormal)
   end
 
