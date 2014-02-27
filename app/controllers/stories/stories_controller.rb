@@ -19,6 +19,7 @@ class StoriesController < BaseController
   end
 
   def performHousekeepingTasks
+    super
     updateTitle
     @table = createTable
     view.addSubview(@table)

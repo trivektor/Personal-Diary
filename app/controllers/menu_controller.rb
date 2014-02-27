@@ -3,7 +3,7 @@ class MenuCell < UITableViewCell
   HEIGHT = 54
   SELECTED_BACKGROUND_COLOR = '#ff9900'.uicolor;
   TEXT_COLOR = '#fff'.uicolor
-  TEXT_FONT = 'HelveticaNeue-Light'.uifont(16)
+  TEXT_FONT = 'HelveticaNeue-Light'.uifont(18)
   ICON_FONT = FontAwesome.fontWithSize(17)
   SEPARATOR_COLOR = '#fff'.uicolor(0.2)
 
@@ -23,7 +23,7 @@ class MenuCell < UITableViewCell
     @iconLabel.backgroundColor = clearColor
     @iconLabel.font = ICON_FONT
 
-    @textLabel = UILabel.alloc.initWithFrame([[45, 16], [243, 21]])
+    @textLabel = UILabel.alloc.initWithFrame([[53, 12], [243, 21]])
     @textLabel.textColor = TEXT_COLOR
     @textLabel.backgroundColor = clearColor
     @textLabel.font = TEXT_FONT
@@ -39,34 +39,22 @@ class MenuCell < UITableViewCell
   def renderForRowAtIndexPath(indexPath)
     self.backgroundColor = UIColor.clearColor
     case indexPath.row
-    when -1
+    when 0
       if CurrentUserManager.sharedInstance
-        @image = UIImageView.alloc.initWithFrame([[15, 9], [26, 26]])
+        @image = UIImageView.alloc.initWithFrame([[15, 9], [25, 25]])
 
         contentView.addSubview(@image)
 
         currentUser = CurrentUserManager.sharedInstance
-        userImageData = NSData.dataWithContentsOfURL(currentUser.profile_image.nsurl)
+        userImageData = NSData.dataWithContentsOfURL(currentUser.profile_picture.nsurl)
         @image.image = UIImage.imageWithData(userImageData)
         @image.layer.masksToBounds = true
         @image.layer.cornerRadius = 3
-        @textLabel.text = currentUser.display_name
+        @textLabel.text = currentUser.full_name
       else
         @textLabel.text = 'Login'
         @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-lock')
       end
-    when 0
-      @textLabel.text = 'Questions'
-      @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-question')
-    when 1
-      @textLabel.text = 'Tags'
-      @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-tags')
-    when 2
-      @textLabel.text = 'Unanswered'
-      @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-bolt')
-    when 3
-      @textLabel.text = 'Jobs'
-      @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-suitcase')
     end
 
     if indexPath.row < 4
@@ -107,7 +95,7 @@ class MenuController < UIViewController
   end
 
   def tableView(tableView, numberOfRowsInSection: section)
-    4
+    1
   end
 
   def tableView(tableView, heightForRowAtIndexPath: indexPath)

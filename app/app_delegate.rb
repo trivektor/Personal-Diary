@@ -26,7 +26,7 @@ class AppDelegate
     if @facebook.isSessionValid
       redirectAfterLogin
     else
-      @facebook.authorize nil
+      @facebook.authorize(FACEBOOK_PERMISSIONS)
     end
 
     true
@@ -51,16 +51,12 @@ class AppDelegate
   end
 
   def fbDidLogin
-    puts 'Facebook did login'
     defaults = NSUserDefaults.standardUserDefaults
-    puts @facebook.accessToken
-    #puts @facebook.expirationDate
 
     defaults.setObject(@facebook.accessToken, forKey:'FBAccessToken')
     defaults.setObject(@facebook.expirationDate, forKey:'FBExpirationDate')
     NSUserDefaults.standardUserDefaults.synchronize
 
-    puts "Login succeeded!"
     redirectAfterLogin
   end
 
@@ -69,10 +65,21 @@ class AppDelegate
   end
 
   def redirectAfterLogin
+    puts "Facebook token is #{@facebook.accessToken}"
+    @facebook.requestWithGraphPath('/me', andDelegate: self)
+  end
+
+  def request(request, didLoad: result)
+    CurrentUserManager.initWithUser(FacebookUser.new(result))
+
     navController = UINavigationController.alloc.initWithRootViewController(StoriesController.new)
-    # menuController = MenuController.alloc.init
-    # sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
-    @window.rootViewController = navController
+    menuController = MenuController.alloc.init
+    sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
+    sideMenuController.parallaxEnabled = false
+    sideMenuController.panGestureEnabled = false
+    sideMenuController.contentViewScaleValue = 0.8
+    sideMenuController.delegate = UIApplication.sharedApplication.delegate
+    @window.rootViewController = sideMenuController
   end
 
 end
