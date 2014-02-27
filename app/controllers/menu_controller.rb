@@ -58,7 +58,7 @@ class MenuCell < UITableViewCell
     end
 
     if indexPath.row < 4
-      bottomBorder = UIView.alloc.initWithFrame([[0, 53], [180, 0.5]])
+      bottomBorder = UIView.alloc.initWithFrame([[0, 53], [180, 0.8]])
       bottomBorder.backgroundColor = SEPARATOR_COLOR
       contentView.addSubview(bottomBorder)
     end
@@ -70,7 +70,7 @@ class MenuController < UIViewController
 
   include UIViewControllerExtension
 
-  BACKGROUND_COLOR = '#222'.uicolor
+  BACKGROUND_COLOR = '#00A5FF'.uicolor
 
   private
 
