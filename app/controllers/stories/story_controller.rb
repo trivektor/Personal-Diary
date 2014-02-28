@@ -37,7 +37,7 @@ class NewStoryController < BaseController
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @javascriptBridge.send(recognized_text: result.text)
+    @jsBridge.send({recognized_text: result.text})
   end
 
   def viewDidLoad
