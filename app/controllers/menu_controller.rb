@@ -5,7 +5,7 @@ class MenuCell < UITableViewCell
   TEXT_COLOR = '#fff'.uicolor
   TEXT_FONT = 'HelveticaNeue-Light'.uifont(18)
   ICON_FONT = FontAwesome.fontWithSize(17)
-  SEPARATOR_COLOR = '#fff'.uicolor(0.2)
+  SEPARATOR_COLOR = '#fff'.uicolor(0.4)
 
   attr_accessor :iconLabel, :textLabel, :image
 
@@ -70,7 +70,7 @@ class MenuController < UIViewController
 
   include UIViewControllerExtension
 
-  BACKGROUND_COLOR = '#00A5FF'.uicolor
+  BACKGROUND_GRADIENT = ['#79c1cd', '#acd9df', '#afdae1', '#4dadbd'].map { |c| c.uicolor.cgcolor }
 
   private
 
@@ -80,14 +80,21 @@ class MenuController < UIViewController
   end
 
   def performHousekeepingTasks
+    drawGradientBackground
     frame = self.view.frame
     clearColor = UIColor.clearColor
     @table = createTable(cell: MenuCell, frame: CGRectMake(0, 80, frame.size.width, frame.size.height), background_color: clearColor, separator_color: clearColor)
-    view.backgroundColor = BACKGROUND_COLOR
     view.addSubview(@table)
   end
 
   def registerEvents
+  end
+
+  def drawGradientBackground
+    gradient = CAGradientLayer.layer
+    gradient.frame = view.bounds
+    gradient.colors = BACKGROUND_GRADIENT
+    view.layer.addSublayer(gradient)
   end
 
   def numberOfSectionsInTableView(tableView)
