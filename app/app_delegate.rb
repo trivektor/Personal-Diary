@@ -71,6 +71,7 @@ class AppDelegate
 
   def request(request, didLoad: result)
     CurrentUserManager.initWithUser(FacebookUser.new(result))
+    FirebaseManager.initWithUser(CurrentUserManager.sharedInstance)
 
     navController = UINavigationController.alloc.initWithRootViewController(StoriesController.new)
     menuController = MenuController.alloc.init

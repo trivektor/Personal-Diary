@@ -28,16 +28,8 @@ class NewStoryController < BaseController
                 :speechRecognition, :titleTextField, :contentTextView
 
   def init
-    setupFirebase
     setupSpeechRecognition
     self
-  end
-
-  def setupFirebase
-    @firebase = Firebase
-      .alloc
-      .initWithUrl(FIREBASE_URL)
-      .childByAppendingPath(CurrentUserManager.sharedInstance.firebaseId)
   end
 
   def setupSpeechRecognition
@@ -80,7 +72,7 @@ class NewStoryController < BaseController
     Story.create(data)
     cdq.save
 
-    @firebase.childByAutoId.setValue(data)
+    FirebaseManager.sharedInstance.childByAutoId.setValue(data)
 
     CRToastManager.showNotificationWithOptions({
       'kCRToastTextKey' => 'Post saved',
