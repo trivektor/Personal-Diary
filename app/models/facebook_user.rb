@@ -34,4 +34,8 @@ class FacebookUser
     "https://graph.facebook.com/#{fid}/picture"
   end
 
+  def firebaseId
+    "facebook-#{fid}"
+  end
+
 end

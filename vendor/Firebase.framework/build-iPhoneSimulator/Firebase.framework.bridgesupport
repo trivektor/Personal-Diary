@@ -1,0 +1,582 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<enum name='FEventTypeChildAdded' value='0'/>
+<enum name='FEventTypeChildChanged' value='2'/>
+<enum name='FEventTypeChildMoved' value='3'/>
+<enum name='FEventTypeChildRemoved' value='1'/>
+<enum name='FEventTypeValue' value='4'/>
+<class name='FDataSnapshot'>
+<method selector='childSnapshotForPath:'>
+<arg declared_type='NSString*' index='0' name='childPathString' type='@'/>
+<retval declared_type='FDataSnapshot*' type='@'/>
+</method>
+<method selector='children'>
+<retval declared_type='NSEnumerator*' type='@'/>
+</method>
+<method selector='childrenCount'>
+<retval declared_type='NSUInteger' type='I' type64='Q'/>
+</method>
+<method selector='hasChild:'>
+<arg declared_type='NSString*' index='0' name='childPathString' type='@'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='hasChildren'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='name'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='priority'>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='ref'>
+<retval declared_type='Firebase*' type='@'/>
+</method>
+<method selector='setChildren:'>
+<arg declared_type='NSEnumerator*' index='0' name='children' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setName:'>
+<arg declared_type='NSString*' index='0' name='name' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPriority:'>
+<arg declared_type='id' index='0' name='priority' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='value'>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='valueInExportFormat'>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<class name='FMutableData'>
+<method selector='childDataByAppendingPath:'>
+<arg declared_type='NSString*' index='0' name='path' type='@'/>
+<retval declared_type='FMutableData*' type='@'/>
+</method>
+<method selector='children'>
+<retval declared_type='NSEnumerator*' type='@'/>
+</method>
+<method selector='childrenCount'>
+<retval declared_type='NSUInteger' type='I' type64='Q'/>
+</method>
+<method selector='hasChildAtPath:'>
+<arg declared_type='NSString*' index='0' name='path' type='@'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='hasChildren'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='name'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='parent'>
+<retval declared_type='FMutableData*' type='@'/>
+</method>
+<method selector='priority'>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setParent:'>
+<arg declared_type='FMutableData*' index='0' name='parent' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPriority:'>
+<arg declared_type='id' index='0' name='priority' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='value'>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<class name='FQuery'>
+<method selector='observeEventType:andPreviousSiblingNameWithBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeEventType:andPreviousSiblingNameWithBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeEventType:withBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeEventType:withBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeSingleEventOfType:andPreviousSiblingNameWithBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='observeSingleEventOfType:andPreviousSiblingNameWithBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='observeSingleEventOfType:withBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='observeSingleEventOfType:withBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='queryEndingAtPriority:'>
+<arg declared_type='id' index='0' name='endPriority' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryEndingAtPriority:andChildName:'>
+<arg declared_type='id' index='0' name='endPriority' type='@'/>
+<arg declared_type='NSString*' index='1' name='childName' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryLimitedToNumberOfChildren:'>
+<arg declared_type='NSUInteger' index='0' name='limit' type='I' type64='Q'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryStartingAtPriority:'>
+<arg declared_type='id' index='0' name='startPriority' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryStartingAtPriority:andChildName:'>
+<arg declared_type='id' index='0' name='startPriority' type='@'/>
+<arg declared_type='NSString*' index='1' name='childName' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='removeAllObservers'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='removeObserverWithHandle:'>
+<arg declared_type='FirebaseHandle' index='0' name='handle' type='I' type64='Q'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='FTransactionResult'>
+<method class_method='true' selector='abort'>
+<retval declared_type='FTransactionResult*' type='@'/>
+</method>
+<method class_method='true' selector='successWithValue:'>
+<arg declared_type='FMutableData*' index='0' name='value' type='@'/>
+<retval declared_type='FTransactionResult*' type='@'/>
+</method>
+</class>
+<class name='Firebase'>
+<method selector='authWithCredential:withCompletionBlock:withCancelBlock:'>
+<arg declared_type='NSString*' index='0' name='credential' type='@'/>
+<arg declared_type='void (^)(NSError *, id)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='id' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='cancelDisconnectOperations'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='cancelDisconnectOperationsWithCompletionBlock:'>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='childByAppendingPath:'>
+<arg declared_type='NSString*' index='0' name='pathString' type='@'/>
+<retval declared_type='Firebase*' type='@'/>
+</method>
+<method selector='childByAutoId'>
+<retval declared_type='Firebase*' type='@'/>
+</method>
+<method selector='description'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='goOffline'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='goOnline'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='initWithUrl:'>
+<arg declared_type='NSString*' index='0' name='url' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='name'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='observeEventType:andPreviousSiblingNameWithBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeEventType:andPreviousSiblingNameWithBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeEventType:withBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeEventType:withBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='FirebaseHandle' type='I' type64='Q'/>
+</method>
+<method selector='observeSingleEventOfType:andPreviousSiblingNameWithBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='observeSingleEventOfType:andPreviousSiblingNameWithBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *, NSString *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<arg declared_type='NSString*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='observeSingleEventOfType:withBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='observeSingleEventOfType:withBlock:withCancelBlock:'>
+<arg declared_type='FEventType' index='0' name='eventType' type='i'/>
+<arg declared_type='void (^)(FDataSnapshot *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='2' name='cancelBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectRemoveValue'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectRemoveValueWithCompletionBlock:'>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectSetValue:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectSetValue:andPriority:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<arg declared_type='id' index='1' name='priority' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectSetValue:andPriority:withCompletionBlock:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<arg declared_type='id' index='1' name='priority' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='2' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectSetValue:withCompletionBlock:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectUpdateChildValues:'>
+<arg declared_type='NSDictionary*' index='0' name='values' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='onDisconnectUpdateChildValues:withCompletionBlock:'>
+<arg declared_type='NSDictionary*' index='0' name='values' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='parent'>
+<retval declared_type='Firebase*' type='@'/>
+</method>
+<method selector='queryEndingAtPriority:'>
+<arg declared_type='id' index='0' name='endPriority' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryEndingAtPriority:andChildName:'>
+<arg declared_type='id' index='0' name='endPriority' type='@'/>
+<arg declared_type='NSString*' index='1' name='childName' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryLimitedToNumberOfChildren:'>
+<arg declared_type='NSUInteger' index='0' name='limit' type='I' type64='Q'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryStartingAtPriority:'>
+<arg declared_type='id' index='0' name='startPriority' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='queryStartingAtPriority:andChildName:'>
+<arg declared_type='id' index='0' name='startPriority' type='@'/>
+<arg declared_type='NSString*' index='1' name='childName' type='@'/>
+<retval declared_type='FQuery*' type='@'/>
+</method>
+<method selector='removeAllObservers'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='removeObserverWithHandle:'>
+<arg declared_type='FirebaseHandle' index='0' name='handle' type='I' type64='Q'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='removeValue'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='removeValueWithCompletionBlock:'>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='root'>
+<retval declared_type='Firebase*' type='@'/>
+</method>
+<method selector='runTransactionBlock:'>
+<arg declared_type='FTransactionResult *(^)(FMutableData *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='FMutableData*' type='@'/>
+<retval declared_type='FTransactionResult*' type='@'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='runTransactionBlock:andCompletionBlock:'>
+<arg declared_type='FTransactionResult *(^)(FMutableData *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='FMutableData*' type='@'/>
+<retval declared_type='FTransactionResult*' type='@'/>
+</arg>
+<arg declared_type='void (^)(NSError *, BOOL, FDataSnapshot *)' function_pointer='true' index='1' name='completionBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='runTransactionBlock:andCompletionBlock:withLocalEvents:'>
+<arg declared_type='FTransactionResult *(^)(FMutableData *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='FMutableData*' type='@'/>
+<retval declared_type='FTransactionResult*' type='@'/>
+</arg>
+<arg declared_type='void (^)(NSError *, BOOL, FDataSnapshot *)' function_pointer='true' index='1' name='completionBlock' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='FDataSnapshot*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='BOOL' index='2' name='localEvents' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='sdkVersion'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='setDispatchQueue:'>
+<arg declared_type='dispatch_queue_t' index='0' name='queue' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setLoggingEnabled:'>
+<arg declared_type='BOOL' index='0' name='enabled' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setName:'>
+<arg declared_type='NSString*' index='0' name='name' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setOption:to:'>
+<arg declared_type='NSString*' index='0' name='option' type='@'/>
+<arg declared_type='id' index='1' name='value' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setParent:'>
+<arg declared_type='Firebase*' index='0' name='parent' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPriority:'>
+<arg declared_type='id' index='0' name='priority' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setPriority:withCompletionBlock:'>
+<arg declared_type='id' index='0' name='priority' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setRoot:'>
+<arg declared_type='Firebase*' index='0' name='root' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:andPriority:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<arg declared_type='id' index='1' name='priority' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:andPriority:withCompletionBlock:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<arg declared_type='id' index='1' name='priority' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='2' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setValue:withCompletionBlock:'>
+<arg declared_type='id' index='0' name='value' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='unauth'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='unauthWithCompletionBlock:'>
+<arg declared_type='void (^)(NSError *)' function_pointer='true' index='0' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='updateChildValues:'>
+<arg declared_type='NSDictionary*' index='0' name='values' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='updateChildValues:withCompletionBlock:'>
+<arg declared_type='NSDictionary*' index='0' name='values' type='@'/>
+<arg declared_type='void (^)(NSError *, Firebase *)' function_pointer='true' index='1' name='block' type='@?'>
+<arg declared_type='NSError*' type='@'/>
+<arg declared_type='Firebase*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+</signatures>

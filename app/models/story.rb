@@ -1,7 +1,7 @@
 class Story < CDQManagedObject
 
   def creationTimeAgo
-    creation_date.timeAgo
+    NSDate.dateWithTimeIntervalSince1970(timestamp).timeAgo
   end
 
 end

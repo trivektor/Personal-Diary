@@ -24,11 +24,20 @@ class NewStoryController < BaseController
   SPEECH_TIMEOUT = 20
   TEMPLATE = 'templates/new_story'
 
-  attr_accessor :story, :form, :speechSDK, :speechRecognition, :titleTextField, :contentTextView
+  attr_accessor :firebase, :story, :form, :speechSDK, 
+                :speechRecognition, :titleTextField, :contentTextView
 
   def init
+    setupFirebase
     setupSpeechRecognition
     self
+  end
+
+  def setupFirebase
+    @firebase = Firebase
+      .alloc
+      .initWithUrl(FIREBASE_URL)
+      .childByAppendingPath(CurrentUserManager.sharedInstance.firebaseId)
   end
 
   def setupSpeechRecognition
@@ -67,8 +76,11 @@ class NewStoryController < BaseController
   end
 
   def createStory(attrs={})
-    Story.create(attrs.merge(creation_date: Time.now))
+    data = attrs.merge(timestamp: Time.now.to_i)
+    Story.create(data)
     cdq.save
+
+    @firebase.childByAutoId.setValue(data)
 
     CRToastManager.showNotificationWithOptions({
       'kCRToastTextKey' => 'Post saved',

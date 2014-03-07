@@ -3,6 +3,6 @@
   <entity name="Story" syncable="YES" representedClassName="Story">
     <attribute optional="YES" syncable="YES" attributeType="String" name="title"/>
     <attribute optional="YES" syncable="YES" attributeType="String" name="content"/>
-    <attribute optional="YES" syncable="YES" attributeType="Date" name="creation_date"/>
+    <attribute optional="YES" syncable="YES" attributeType="Integer 32" name="timestamp" defaultValueString="0"/>
   </entity>
 </model>
