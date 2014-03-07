@@ -28,6 +28,7 @@ Motion::Project::App.setup do |app|
   app.libs += ['/usr/lib/libicucore.dylib', '/usr/lib/libc++.dylib']
 
   app.vendor_project('vendor/iSpeechSDK', :static, :products => ["libiSpeechSDK.a"], :headers_dir => "Headers")
+  app.vendor_project('vendor/Firebase.framework', :static, :products => ['Firebase'] , :headers_dir => 'Headers')
 
   # Frameworks
   %w(
@@ -62,7 +63,6 @@ Motion::Project::App.setup do |app|
     pod 'NSDate+TimeAgo'
     pod 'WebViewJavascriptBridge'
     pod 'GRMustache'
-    pod 'Firebase'
   end
 
 end
