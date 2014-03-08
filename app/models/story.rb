@@ -23,4 +23,8 @@ class Story
     NSDate.dateWithTimeIntervalSince1970(timestamp).timeAgo
   end
 
+  def destroy
+    FirebaseManager.sharedInstance.childByAppendingPath(key).removeValue
+  end
+
 end
