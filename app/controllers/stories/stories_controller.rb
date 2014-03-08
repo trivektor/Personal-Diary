@@ -13,9 +13,9 @@ class StoriesController < BaseController
   CREATION_DATE_FONT = 'HelveticaNeue-Thin'.uifont(14)
 
   def viewDidLoad
-    @stories = Story.all
+    @stories = []
     performHousekeepingTasks
-    registerEvents
+    fetchStoriesFromFirebase
   end
 
   def performHousekeepingTasks
@@ -27,12 +27,23 @@ class StoriesController < BaseController
     createBarButtonItems
   end
 
+  def fetchStoriesFromFirebase
+    @firebase = FirebaseManager.sharedInstance.observeEventType(FEventTypeValue, withBlock: lambda do |snapshot|
+      break unless snapshot.value.is_a? Hash
+      @stories = snapshot.value.map do |key, story_attrs|
+        Story.new(key, story_attrs)
+      end.sort_by(&:timestamp).reverse
+      updateTitle
+      @table.reloadData
+    end)
+  end
+
   def createBarButtonItems
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'pencil', touchHandler: 'createStory')
   end
 
   def registerEvents
-    'StoryCreated'.add_observer(self, 'reload')
+    'StoryCreated'.add_observer(self, 'fetchStoriesFromFirebase')
   end
 
   def updateTitle

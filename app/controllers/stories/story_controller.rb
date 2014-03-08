@@ -68,11 +68,7 @@ class NewStoryController < BaseController
   end
 
   def createStory(attrs={})
-    data = attrs.merge(timestamp: Time.now.to_i)
-    Story.create(data)
-    cdq.save
-
-    FirebaseManager.sharedInstance.childByAutoId.setValue(data)
+    FirebaseManager.sharedInstance.childByAutoId.setValue(attrs.merge(timestamp: Time.now.to_i))
 
     CRToastManager.showNotificationWithOptions({
       'kCRToastTextKey' => 'Post saved',
