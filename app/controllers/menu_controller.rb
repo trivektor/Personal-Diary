@@ -70,24 +70,18 @@ class MenuController < UIViewController
 
   include UIViewControllerExtension
 
-  BACKGROUND_GRADIENT = ['#79c1cd', '#acd9df', '#afdae1', '#4dadbd'].map { |c| c.uicolor.cgcolor }
-
   private
 
   def viewDidLoad
     performHousekeepingTasks
-    registerEvents
   end
 
   def performHousekeepingTasks
-    drawGradientBackground
     frame = self.view.frame
     clearColor = UIColor.clearColor
     @table = createTable(cell: MenuCell, frame: CGRectMake(0, 80, frame.size.width, frame.size.height), background_color: clearColor, separator_color: clearColor)
     view.addSubview(@table)
-  end
-
-  def registerEvents
+    view.backgroundColor = MENU_BACKGROUND_COLOR
   end
 
   def drawGradientBackground

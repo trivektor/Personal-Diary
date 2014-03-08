@@ -41,12 +41,15 @@ class AppDelegate
       NSForegroundColorAttributeName => NAVBAR_FONT_COLOR
     )
 
+    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent
+    window.tintColor = '#fff'.uicolor
+
     # CRToastManager
     CRToastManager.setDefaultOptions(
       'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar,
-      'kCRToastFontKey' => 'HelveticaNeue-Light'.uifont(16),
-      'kCRToastTextColorKey' => '#fff'.uicolor,
-      'kCRToastBackgroundColorKey' => '#2ecc71'.uicolor
+      'kCRToastFontKey' => TOAST_FONT,
+      'kCRToastTextColorKey' => TOAST_TEXT_COLOR,
+      'kCRToastBackgroundColorKey' => TOAST_BACKGROUND_COLOR
     )
   end
 
