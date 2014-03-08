@@ -68,7 +68,7 @@ class NewStoryController < BaseController
   end
 
   def createStory(attrs={})
-    FirebaseManager.sharedInstance.childByAutoId.setValue(attrs.merge(timestamp: Time.now.to_i))
+    Story.create(attrs)
 
     CRToastManager.showNotificationWithOptions({
       'kCRToastTextKey' => 'Post saved',
@@ -80,8 +80,6 @@ class NewStoryController < BaseController
     }, completionBlock: -> {
       dismiss
     })
-
-    'StoryCreated'.post_notification
   end
 
   def dismiss

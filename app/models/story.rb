@@ -27,4 +27,8 @@ class Story
     FirebaseManager.sharedInstance.childByAppendingPath(key).removeValue
   end
 
+  def self.create(attrs={})
+    FirebaseManager.sharedInstance.childByAutoId.setValue(attrs.merge(timestamp: Time.now.to_i))
+  end
+
 end
