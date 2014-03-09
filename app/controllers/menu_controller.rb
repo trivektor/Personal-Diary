@@ -1,13 +1,11 @@
 class MenuCell < UITableViewCell
 
-  HEIGHT = 54
+  HEIGHT = 56
   SELECTED_BACKGROUND_COLOR = '#ff9900'.uicolor;
-  TEXT_COLOR = '#fff'.uicolor
-  TEXT_FONT = 'HelveticaNeue-Light'.uifont(18)
   ICON_FONT = FontAwesome.fontWithSize(17)
   SEPARATOR_COLOR = '#fff'.uicolor(0.4)
 
-  attr_accessor :iconLabel, :textLabel, :image
+  attr_accessor :iconLabel, :textLabel, :emailLabel, :image
 
   def initWithStyle(style, reuseIdentifier: identifier)
     super
@@ -18,18 +16,19 @@ class MenuCell < UITableViewCell
   def createLabels
     clearColor = UIColor.clearColor
 
-    @iconLabel = UILabel.alloc.initWithFrame([[15, 14], [25, 25]])
-    @iconLabel.textColor = TEXT_COLOR
+    @iconLabel = UILabel.alloc.initWithFrame([[15, 5], [36, 36]])
+    @iconLabel.textColor = '#fff'.uicolor
     @iconLabel.backgroundColor = clearColor
     @iconLabel.font = ICON_FONT
 
-    @textLabel = UILabel.alloc.initWithFrame([[53, 12], [243, 21]])
-    @textLabel.textColor = TEXT_COLOR
+    @textLabel = UILabel.alloc.initWithFrame([[56, 2], [243, 21]])
+    @textLabel.textColor = '#fff'.uicolor
     @textLabel.backgroundColor = clearColor
-    @textLabel.font = TEXT_FONT
+    @textLabel.font = 'HelveticaNeue-Thin'.uifont(18)
 
     contentView.addSubview(@iconLabel)
     contentView.addSubview(@textLabel)
+
     selectedBackgroundView = UIView.alloc.initWithFrame(self.frame)
     selectedBackgroundView.backgroundColor = SELECTED_BACKGROUND_COLOR
     self.selectedBackgroundView = selectedBackgroundView
@@ -41,16 +40,21 @@ class MenuCell < UITableViewCell
     case indexPath.row
     when 0
       if CurrentUserManager.sharedInstance
-        @image = UIImageView.alloc.initWithFrame([[15, 9], [25, 25]])
+        @image = UIImageView.alloc.initWithFrame([[10, 5], [36, 36]])
+
+        @emailLabel = UILabel.alloc.initWithFrame([[56, 26], [243, 17]])
+        @emailLabel.textColor = '#ccc'.uicolor
+        @emailLabel.backgroundColor = UIColor.clearColor
+        @emailLabel.font = 'HelveticaNeue-Thin'.uifont(14)
 
         contentView.addSubview(@image)
+        contentView.addSubview(@emailLabel)
 
         currentUser = CurrentUserManager.sharedInstance
         userImageData = NSData.dataWithContentsOfURL(currentUser.profile_picture.nsurl)
         @image.image = UIImage.imageWithData(userImageData)
-        @image.layer.masksToBounds = true
-        @image.layer.cornerRadius = 3
         @textLabel.text = currentUser.full_name
+        @emailLabel.text = currentUser.email
       else
         @textLabel.text = 'Login'
         @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-lock')
@@ -58,7 +62,7 @@ class MenuCell < UITableViewCell
     end
 
     if indexPath.row < 4
-      bottomBorder = UIView.alloc.initWithFrame([[0, 53], [180, 0.8]])
+      bottomBorder = UIView.alloc.initWithFrame([[0, 55], [200, 0.8]])
       bottomBorder.backgroundColor = SEPARATOR_COLOR
       contentView.addSubview(bottomBorder)
     end

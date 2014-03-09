@@ -26,6 +26,10 @@ class FacebookUser
     "#{first_name} #{last_name}"
   end
 
+  def email
+    @data[:email]
+  end
+
   def location
     @data[:location][:name]
   end
