@@ -36,13 +36,15 @@ Motion::Project::App.setup do |app|
     CoreFoundation
     CoreGraphics
     CoreMedia
+    CoreMotion
+    CoreLocation
+    CoreData
     SystemConfiguration
     QuartzCore
     Security
     Social
     AdSupport
     Accounts
-    CoreData
     AudioToolbox
     AVFoundation
     CFNetwork

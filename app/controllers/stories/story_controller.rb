@@ -97,4 +97,16 @@ class NewStoryController < BaseController
     @speechRecognition.listen(nil)
   end
 
+  # Gesture detection
+  def canBecomeFirstResponder
+    true
+  end
+
+  # Shake detection
+  def motionEnded(motion, withEvent: event)
+    if event.subtype == UIEventSubtypeMotionShake
+      @jsBridge.send(clear_form: true)
+    end
+  end
+
 end

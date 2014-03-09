@@ -30,7 +30,12 @@
         jsBridge = event.bridge;
 
         jsBridge.init(function(message, responseCallback) {
-          content.value += (content.value || '') + message.recognized_text;
+          if (message.hasOwnProperty('recognized_text')) {
+            content.value += (content.value || '') + message.recognized_text;
+          } else if (message.hasOwnProperty('clear_form')) {
+            title.value = '';
+            content.value = '';
+          }
         });
 
         submitBtn.addEventListener('click', function() {
