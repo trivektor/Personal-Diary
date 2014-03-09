@@ -3,7 +3,7 @@ class MenuCell < UITableViewCell
   HEIGHT = 56
   SELECTED_BACKGROUND_COLOR = '#ff9900'.uicolor;
   ICON_FONT = FontAwesome.fontWithSize(17)
-  SEPARATOR_COLOR = '#fff'.uicolor(0.4)
+  SEPARATOR_COLOR = '#fff'.uicolor(0.3)
 
   attr_accessor :iconLabel, :textLabel, :emailLabel, :image
 
@@ -21,10 +21,10 @@ class MenuCell < UITableViewCell
     @iconLabel.backgroundColor = clearColor
     @iconLabel.font = ICON_FONT
 
-    @textLabel = UILabel.alloc.initWithFrame([[56, 2], [243, 21]])
+    @textLabel = UILabel.alloc.initWithFrame([[56, 1], [243, 21]])
     @textLabel.textColor = '#fff'.uicolor
     @textLabel.backgroundColor = clearColor
-    @textLabel.font = 'HelveticaNeue-Thin'.uifont(18)
+    @textLabel.font = 'HelveticaNeue-Light'.uifont(18)
 
     contentView.addSubview(@iconLabel)
     contentView.addSubview(@textLabel)
@@ -42,7 +42,7 @@ class MenuCell < UITableViewCell
       if CurrentUserManager.sharedInstance
         @image = UIImageView.alloc.initWithFrame([[10, 5], [36, 36]])
 
-        @emailLabel = UILabel.alloc.initWithFrame([[56, 26], [243, 17]])
+        @emailLabel = UILabel.alloc.initWithFrame([[56, 24], [243, 18]])
         @emailLabel.textColor = '#ccc'.uicolor
         @emailLabel.backgroundColor = UIColor.clearColor
         @emailLabel.font = 'HelveticaNeue-Thin'.uifont(14)
