@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='bootstrap.css'>
+    <link rel='stylesheet' type='text/css' href='customizations.css'>
+    <link rel='stylesheet' type='text/css' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+  </head>
+  <body>
+    <div class='container'>
+      <h1>{{ title }}</h1>
+      <p>
+        <time class='text-muted'>
+          <i class='fa fa-time'></i>
+          {{ creation_date }}
+        </time>
+      </p>
+    </div>
+    <div class='container'>{{ content }}</div>
+  </body>
+</html>

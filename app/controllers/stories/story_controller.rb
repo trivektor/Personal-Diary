@@ -2,6 +2,8 @@ class StoryController < BaseController
 
   attr_accessor :story
 
+  TEMPLATE = 'templates/story'
+
   def initWithStory(story)
     @story = story
     self
@@ -9,10 +11,18 @@ class StoryController < BaseController
 
   def viewDidLoad
     performHousekeepingTasks
+    setupWebViewForm
   end
 
   def performHousekeepingTasks
     navigationItem.title = 'Story'
+  end
+
+  def setupWebViewForm
+    @webView = createWebView
+    view.addSubview(@webView)
+    html = loadTemplate(TEMPLATE, @story.to_json)
+    @webView.loadHTMLString(html, baseURL: NSURL.fileURLWithPath(NSBundle.mainBundle.bundlePath))
   end
 
 end
