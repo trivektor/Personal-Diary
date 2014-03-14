@@ -68,6 +68,7 @@ module UIViewControllerExtension
       screenWidth = CGRectGetWidth(screenBounds)
       @progressIndicator = RTSpinKitView.alloc.initWithStyle(RTSpinKitViewStyleBounce)
       @progressIndicator.center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds))
+      @progressIndicator.color = SPINKIT_COLOR
       view.addSubview(@progressIndicator)
     end
     @progressIndicator.startAnimating
