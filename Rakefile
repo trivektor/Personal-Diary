@@ -14,7 +14,7 @@ Motion::Project::App.setup do |app|
   app.identifier = 'com.personaldiary.'
   
   app.device_family = [:iphone]
-  app.sdk_version = '7.0'
+  app.sdk_version = '7.1'
   app.provisioning_profile = ENV['MOTION_PROVISIONING_PROFILE']
   app.codesign_certificate = ENV['MOTION_CODESIGN_CERTIFICATE']
   app.detect_dependencies = false
@@ -65,6 +65,7 @@ Motion::Project::App.setup do |app|
     pod 'NSDate+TimeAgo'
     pod 'WebViewJavascriptBridge'
     pod 'GRMustache'
+    pod 'SpinKit'
   end
 
 end

@@ -63,11 +63,18 @@ module UIViewControllerExtension
   end
 
   def showProgress
-    MRProgressOverlayView.showOverlayAddedTo(self.view, animated: true)
+    unless @progressIndicator
+      screenBounds = UIScreen.mainScreen.bounds
+      screenWidth = CGRectGetWidth(screenBounds)
+      @progressIndicator = RTSpinKitView.alloc.initWithStyle(RTSpinKitViewStyleBounce)
+      @progressIndicator.center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds))
+      view.addSubview(@progressIndicator)
+    end
+    @progressIndicator.startAnimating
   end
 
   def hideProgress
-    MRProgressOverlayView.dismissOverlayForView(self.view, animated: true)
+    @progressIndicator.stopAnimating
   end
 
 end

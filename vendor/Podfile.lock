@@ -29,6 +29,7 @@ PODS:
   - MSCMoreOptionTableViewCell (1.1)
   - NSDate+TimeAgo (1.0.2)
   - RESideMenu (3.4)
+  - SpinKit (1.0.1)
   - WebViewJavascriptBridge (4.1.0)
 
 DEPENDENCIES:
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - MSCMoreOptionTableViewCell
   - NSDate+TimeAgo
   - RESideMenu
+  - SpinKit
   - WebViewJavascriptBridge
 
 SPEC CHECKSUMS:
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   MSCMoreOptionTableViewCell: ac1dd0c62ca6308b139f191b0e1cef35c9de3a2f
   NSDate+TimeAgo: fe93d3042e83093ae3630bc47ae7d57f782733f6
   RESideMenu: d8d6330052e0348718826045b912a1c71748357d
+  SpinKit: c7490233be81d8daf41da05dc463351423658aad
   WebViewJavascriptBridge: eb504e9485f5b7f3fa036b6f0d748cfccb2aa18b
 
 COCOAPODS: 0.29.0
