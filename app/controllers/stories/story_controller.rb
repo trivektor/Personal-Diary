@@ -61,7 +61,7 @@ class NewStoryController < BaseController
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
-    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'microphone', touchHandler: 'recordContent')
+    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'gatherFormData')
   end
 
   def setupWebViewForm
@@ -73,7 +73,11 @@ class NewStoryController < BaseController
 
   def setupJavascriptBridge
     @jsBridge = WebViewJavascriptBridge.bridgeForWebView(@webView, webViewDelegate: self, handler: lambda { |data, callback|
-      createStory(data)
+      if data[:phone_input]
+        recordContent
+      elsif data[:create_story]
+        createStory(title: data[:title], content: data[:content])
+      end
     })
   end
 
@@ -110,6 +114,10 @@ class NewStoryController < BaseController
   # Gesture detection
   def canBecomeFirstResponder
     true
+  end
+
+  def gatherFormData
+    @jsBridge.send(gather_form_data: true)
   end
 
   # Shake detection

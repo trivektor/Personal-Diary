@@ -1,6 +1,7 @@
 body {
   font-size: 16px;
   font-weight: 300;
+  -webkit-tap-highlight-color: rgba(0,0,0, 0);
 }
 
 h1,
@@ -16,10 +17,7 @@ h6 {
   border-radius: 0;
   font-family: inherit;
   font-weight: inherit;
-  font-size: 1.3em;
   border: none;
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 
 .btn-primary {
@@ -48,12 +46,7 @@ h6 {
   box-shadow: none;
 }
 
-#story-form {
-  padding-left: 16px;
-}
-
 #story-form .form-group {
-  border-top: 1px solid rgba(224, 224, 224, 1);
   margin-bottom: 0;
   padding: 7px 0;
 }
@@ -65,4 +58,20 @@ h6 {
 .wysihtml5-wrapper {
   height: 150px;
   overflow: auto;
+}
+
+.wysihtml5-wrapper .btn {
+  font-size: 1.1em;
+}
+
+.well {
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  background: #e1e1e1;
+}
+
+#wysihtml5-toolbar {
+  padding: 10px;
+  margin-bottom: 0;
 }

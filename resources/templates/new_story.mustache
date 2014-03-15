@@ -13,13 +13,7 @@
         <label class='sr-only'>Title</label>
         <input id='title' type='text' class='form-control' autocorrect='off' spellcheck='false' placeholder='Title of your story...' />
       </div>
-      <div class='form-group'>
-        <label class='sr-only'>Content</label>
-        <div class='wysihtml5-wrapper'>
-          <textarea id='content' class='form-control' rows='12' autocorrect='off' spellcheck='false' placeholder='Content of your story...' style='height: 150px'></textarea>
-        </div>
-      </div>
-      <div id="wysihtml5-toolbar" style="display: none;">
+      <div id='wysihtml5-toolbar' class='well well-sm text-center' style="display: none;">
         <!-- Bold -->
         <a class='btn btn-default' data-wysihtml5-command='bold'>
           <i class='fa fa-bold'></i>
@@ -51,17 +45,22 @@
         <a class='btn btn-default' data-wysihtml5-command='insertUnorderedList'>
           <i class='fa fa-list-ul'></i>
         </a>
+        <a id='microphone' class='btn btn-default'>
+          <i class='fa fa-microphone'></i>
+        </a>
       </div>
-      <div class='form-group text-right'>
-        <button id='submit-btn' type='button' class='btn btn-default'>Post</button>
+      <div class='form-group'>
+        <label class='sr-only'>Content</label>
+        <div class='wysihtml5-wrapper'>
+          <textarea id='content' class='form-control' rows='12' autocorrect='off' spellcheck='false' placeholder='Content of your story...' style='height: 150px' spellcheck='false' autocorrect='off'></textarea>
+        </div>
       </div>
     </div>
     <script src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
     <script src='http://xing.github.io/wysihtml5/dist/wysihtml5-0.3.0.js'></script>
     <script>
-      var title = document.getElementById('title');
-      var content = document.getElementById('content');
-      var submitBtn = document.getElementById('submit-btn');
+      var $title = $('#title');
+      var $content = $('#content');
       var jsBridge;
 
       document.addEventListener('WebViewJavascriptBridgeReady', function(event) {
@@ -69,23 +68,26 @@
 
         jsBridge.init(function(message, responseCallback) {
           if (message.hasOwnProperty('recognized_text')) {
-            content.value += (content.value || '') + message.recognized_text;
+            $content.val($content.val() + message.recognized_text);
           } else if (message.hasOwnProperty('clear_form')) {
-            title.value = '';
-            content.value = '';
+            $title.val('');
+            $content.val('');
+          } else if (message.hasOwnProperty('gather_form_data')) {
+            jsBridge.send({
+              create_story: true,
+              title: $title.val(),
+              content: $content.val()
+            })
           }
         });
-
-        submitBtn.addEventListener('click', function() {
-          jsBridge.send({
-            title: title.value || 'Untitled',
-            content: content.value
-          });
-        }, false);
 
         new wysihtml5.Editor('content', {
           toolbar: 'wysihtml5-toolbar',
           stylesheets: ["http://yui.yahooapis.com/2.9.0/build/reset/reset-min.css", "http://xing.github.io/wysihtml5/css/editor.css"]
+        });
+
+        $('#microphone').click(function() {
+          jsBridge.send({phone_input: true});
         });
       });
     </script>

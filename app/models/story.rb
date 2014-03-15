@@ -36,6 +36,9 @@ class Story
   end
 
   def self.create(attrs={})
+    unless attrs[:title].to_s.length > 0
+      attrs[:title] = "Story on #{Time.now.strftime('%B %d %Y')}"
+    end
     FirebaseManager.sharedInstance.childByAutoId.setValue(attrs.merge(timestamp: Time.now.to_i))
   end
 
