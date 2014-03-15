@@ -8,4 +8,4 @@ TOAST_TEXT_COLOR = '#fff'.uicolor
 TOAST_FONT = 'HelveticaNeue-Light'.uifont(21)
 FACEBOOK_PERMISSIONS = %w(email user_birthday publish_actions)
 FIREBASE_URL = 'http://personaldiary.firebaseio.com'
-SPINKIT_COLOR = '#ff3a2d'.uicolor
+SPINKIT_COLOR = '#3498db'.uicolor

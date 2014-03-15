@@ -16,6 +16,7 @@ class StoriesController < BaseController
     @stories = []
     performHousekeepingTasks
     fetchStoriesFromFirebase
+    showProgress
   end
 
   def performHousekeepingTasks
@@ -35,6 +36,7 @@ class StoriesController < BaseController
       end.sort_by(&:timestamp).reverse
       updateTitle
       @table.reloadData
+      hideProgress
     end)
   end
 

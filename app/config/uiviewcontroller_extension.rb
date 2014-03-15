@@ -62,13 +62,16 @@ module UIViewControllerExtension
     GRMustacheTemplate.renderObject(NSDictionary.dictionaryWithDictionary(data), fromString: html, error: nil)
   end
 
-  def showProgress
+  def showProgress(options={})
     unless @progressIndicator
       screenBounds = UIScreen.mainScreen.bounds
       screenWidth = CGRectGetWidth(screenBounds)
-      @progressIndicator = RTSpinKitView.alloc.initWithStyle(RTSpinKitViewStyleBounce)
-      @progressIndicator.center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds))
-      @progressIndicator.color = SPINKIT_COLOR
+      @progressIndicator = RTSpinKitView.alloc.initWithStyle(options[:style] || RTSpinKitViewStyleWave)
+      @progressIndicator.center = CGPointMake(
+        options[:center_x] || CGRectGetMidX(screenBounds),
+        options[:center_y] || CGRectGetMidY(screenBounds)
+      )
+      @progressIndicator.color = options[:color] || SPINKIT_COLOR
       view.addSubview(@progressIndicator)
     end
     @progressIndicator.startAnimating
