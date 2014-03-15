@@ -61,3 +61,8 @@ h6 {
 #submit {
   width: 100%;
 }
+
+.wysihtml5-wrapper {
+  height: 150px;
+  overflow: auto;
+}

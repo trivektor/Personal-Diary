@@ -5,21 +5,59 @@
     <link rel='stylesheet' type='text/css' href='bootstrap.css'>
     <link rel='stylesheet' type='text/css' href='customizations.css'>
     <link rel='stylesheet' type='text/css' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+    <link rel='stylesheet' type='text/css' href='http://xing.github.io/wysihtml5/css/editor.css'>
   </head>
   <body>
     <div id='story-form'>
-      <div class='form-group'>
+      <div class='form-group hide'>
         <label class='sr-only'>Title</label>
         <input id='title' type='text' class='form-control' autocorrect='off' spellcheck='false' placeholder='Title of your story...' />
       </div>
       <div class='form-group'>
         <label class='sr-only'>Content</label>
-        <textarea id='content' class='form-control' rows='12' autocorrect='off' spellcheck='false' placeholder='Content of your story...'></textarea>
+        <div class='wysihtml5-wrapper'>
+          <textarea id='content' class='form-control' rows='12' autocorrect='off' spellcheck='false' placeholder='Content of your story...' style='height: 150px'></textarea>
+        </div>
+      </div>
+      <div id="wysihtml5-toolbar" style="display: none;">
+        <!-- Bold -->
+        <a class='btn btn-default' data-wysihtml5-command='bold'>
+          <i class='fa fa-bold'></i>
+        </a>
+        <!-- Italic -->
+        <a class='btn btn-default' data-wysihtml5-command='italic'>
+          <i class='fa fa-italic'></i>
+        </a>
+        <!-- Underline -->
+        <a class='btn btn-default' data-wysihtml5-command='underline'>
+          <i class='fa fa-underline'></i>
+        </a>
+        <!-- Link -->
+        <a class='btn btn-default' data-wysihtml5-command='createLink'>
+          <i class='fa fa-link'></i>
+        </a>
+        <div class='btn btn-default' data-wysihtml5-dialog='createLink' style='display: none'>
+          <label>
+            Link:
+            <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+          </label>
+          <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
+        <!-- Ordered list -->
+        <a class='btn btn-default' data-wysihtml5-command='insertOrderedList'>
+          <i class='fa fa-list-ol'></i>
+        </a>
+        <!-- Unordered list -->
+        <a class='btn btn-default' data-wysihtml5-command='insertUnorderedList'>
+          <i class='fa fa-list-ul'></i>
+        </a>
       </div>
       <div class='form-group text-right'>
         <button id='submit-btn' type='button' class='btn btn-default'>Post</button>
       </div>
     </div>
+    <script src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+    <script src='http://xing.github.io/wysihtml5/dist/wysihtml5-0.3.0.js'></script>
     <script>
       var title = document.getElementById('title');
       var content = document.getElementById('content');
@@ -44,6 +82,11 @@
             content: content.value
           });
         }, false);
+
+        new wysihtml5.Editor('content', {
+          toolbar: 'wysihtml5-toolbar',
+          stylesheets: ["http://yui.yahooapis.com/2.9.0/build/reset/reset-min.css", "http://xing.github.io/wysihtml5/css/editor.css"]
+        });
       });
     </script>
   </body>
