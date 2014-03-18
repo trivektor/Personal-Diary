@@ -2,9 +2,7 @@ class FirebaseManager
 
   def self.initWithUser(user)
     Dispatch.once do
-      @firebase ||= Firebase.alloc
-        .initWithUrl(FIREBASE_URL)
-        .childByAppendingPath(user.firebaseId)
+      @firebase ||= Firebase.new(FIREBASE_URL).childByAppendingPath(user.firebaseId)
     end
 
     @firebase

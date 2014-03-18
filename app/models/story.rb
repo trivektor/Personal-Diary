@@ -24,7 +24,7 @@ class Story
   end
 
   def destroy
-    FirebaseManager.sharedInstance.childByAppendingPath(key).removeValue
+    FirebaseManager.sharedInstance.childByAppendingPath(key).clear!
   end
 
   def to_json
@@ -39,7 +39,7 @@ class Story
     unless attrs[:title].to_s.length > 0
       attrs[:title] = "Story on #{Time.now.strftime('%B %d %Y')}"
     end
-    FirebaseManager.sharedInstance.childByAutoId.setValue(attrs.merge(timestamp: Time.now.to_i))
+    FirebaseManager.sharedInstance.childByAutoId.set(attrs.merge(timestamp: Time.now.to_i))
   end
 
 end
