@@ -77,23 +77,41 @@ class NewStoryController < BaseController
         recordContent
       elsif data[:create_story]
         createStory(title: data[:title], content: data[:content])
+        # controller = UINavigationController.alloc.initWithRootViewController(MapViewController.new)
+        # controller.modalPresentationStyle = UIModalPresentationFormSheet
+        # presentViewController(controller, animated: true, completion: nil)
       end
     })
   end
 
   def createStory(attrs={})
-    Story.create(attrs)
+    showProgress
 
-    CRToastManager.showNotificationWithOptions({
-      'kCRToastTextKey' => 'Post saved',
-      'kCRToastTextAlignmentKey' => NSTextAlignmentCenter,
-      'kCRToastAnimationInTypeKey' => CRToastAnimationTypeGravity,
-      'kCRToastAnimationOutTypeKey' => CRToastAnimationTypeGravity,
-      'kCRToastAnimationInDirectionKey' => CRToastAnimationDirectionLeft,
-      'kCRToastAnimationOutDirectionKey' => CRToastAnimationDirectionRight
-    }, completionBlock: -> {
-      dismiss
-    })
+    BW::Location.get_once do |loc|
+      location = CLLocation.alloc.initWithLatitude(loc.latitude, longitude: loc.longitude)
+
+      geocoder = CLGeocoder.alloc.init
+
+      geocoder.reverseGeocodeLocation(location, completionHandler: lambda { |placemarks, error|
+        p placemarks.inspect
+        unless placemarks.empty?
+          placemark = placemarks[0]
+          attrs.merge!(postal_code: placemark.postalCode, state: placemark.administrativeArea, city: placemark.locality)
+        end
+        Story.create(attrs)
+        hideProgress
+        CRToastManager.showNotificationWithOptions({
+          'kCRToastTextKey' => 'Post saved',
+          'kCRToastTextAlignmentKey' => NSTextAlignmentCenter,
+          'kCRToastAnimationInTypeKey' => CRToastAnimationTypeGravity,
+          'kCRToastAnimationOutTypeKey' => CRToastAnimationTypeGravity,
+          'kCRToastAnimationInDirectionKey' => CRToastAnimationDirectionLeft,
+          'kCRToastAnimationOutDirectionKey' => CRToastAnimationDirectionRight
+        }, completionBlock: -> {
+          dismiss
+        })
+      })
+    end
   end
 
   def dismiss

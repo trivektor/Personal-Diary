@@ -3,6 +3,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
 
 begin
+  require 'bubble-wrap/all'
   require 'bundler'
   Bundler.require
 rescue LoadError
