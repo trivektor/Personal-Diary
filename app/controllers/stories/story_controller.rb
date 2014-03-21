@@ -93,7 +93,6 @@ class NewStoryController < BaseController
       geocoder = CLGeocoder.alloc.init
 
       geocoder.reverseGeocodeLocation(location, completionHandler: lambda { |placemarks, error|
-        p placemarks.inspect
         unless placemarks.empty?
           placemark = placemarks[0]
           attrs.merge!(postal_code: placemark.postalCode, state: placemark.administrativeArea, city: placemark.locality)

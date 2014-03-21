@@ -30,7 +30,10 @@ class StoriesController < BaseController
 
   def fetchStoriesFromFirebase
     @firebase = FirebaseManager.sharedInstance.observeEventType(FEventTypeValue, withBlock: lambda do |snapshot|
-      break unless snapshot.value.is_a? Hash
+      unless snapshot.value.is_a? Hash
+        hideProgress
+        break
+      end
       @stories = snapshot.value.map do |key, story_attrs|
         Story.new(key, story_attrs)
       end.sort_by(&:timestamp).reverse
@@ -71,7 +74,7 @@ class StoriesController < BaseController
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     cell.textLabel.text = story.title
     cell.textLabel.font = TITLE_FONT
-    cell.detailTextLabel.text = story.creationTimeAgo
+    cell.detailTextLabel.text = story.timeAndLocation
     cell.detailTextLabel.font = CREATION_DATE_FONT
     cell.selectionStyle = UITableViewCellSelectionStyleNone
     cell.delegate = self

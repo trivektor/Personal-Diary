@@ -23,6 +23,14 @@ class Story
     NSDate.dateWithTimeIntervalSince1970(timestamp).timeAgo
   end
 
+  def location
+    @attrs.values_at('city', 'state').compact.join(', ')
+  end
+
+  def timeAndLocation
+    "#{creationTimeAgo} near #{location}"
+  end
+
   def destroy
     FirebaseManager.sharedInstance.childByAppendingPath(key).clear!
   end
