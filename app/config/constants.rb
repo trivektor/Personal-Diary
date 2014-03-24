@@ -1,4 +1,4 @@
-NAVBAR_TINT_COLOR = '#ff3a2d'.uicolor
+NAVBAR_TINT_COLOR = '#444'.uicolor
 NAVBAR_BUTTON_TINT_COLOR = '#1ccaff'.uicolor
 NAVBAR_FONT = 'HelveticaNeue-Light'.uifont(22)
 NAVBAR_FONT_COLOR = '#fff'.uicolor

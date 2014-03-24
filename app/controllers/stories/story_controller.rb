@@ -33,8 +33,9 @@ class NewStoryController < BaseController
 
   SPEECH_TIMEOUT = 20
   TEMPLATE = 'templates/new_story'
+  TEXTVIEW_FONT = 'HelveticaNeue-Light'.uifont(19)
 
-  attr_accessor :firebase, :story, :form, :speechSDK, 
+  attr_accessor :firebase, :story, :form, :speechSDK, :textView,
                 :speechRecognition, :titleTextField, :contentTextView
 
   def init
@@ -53,22 +54,25 @@ class NewStoryController < BaseController
 
   def viewDidLoad
     performHousekeepingTasks
-    setupWebViewForm
-    setupJavascriptBridge
+    setupForm
   end
 
   def performHousekeepingTasks
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
-    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'gatherFormData')
+    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'createStory')
   end
 
-  def setupWebViewForm
-    @webView = createWebView
-    view.addSubview(@webView)
-    html = loadTemplate(TEMPLATE)
-    @webView.loadHTMLString(html, baseURL: NSURL.fileURLWithPath(NSBundle.mainBundle.bundlePath))
+  def setupForm
+    # 216 is the height of the keyboard
+    height = view.frame.size.height - 216
+    @textView = UITextView.alloc.initWithFrame([[0, 0], [320, height]])
+    @textView.delegate = self
+    @textView.font = TEXTVIEW_FONT
+    @textView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+    view.addSubview(@textView)
+    @textView.becomeFirstResponder
   end
 
   def setupJavascriptBridge
@@ -84,8 +88,9 @@ class NewStoryController < BaseController
     })
   end
 
-  def createStory(attrs={})
+  def createStory
     showProgress
+    attrs = {content: @textView.text}
 
     BW::Location.get_once do |loc|
       location = CLLocation.alloc.initWithLatitude(loc.latitude, longitude: loc.longitude)
