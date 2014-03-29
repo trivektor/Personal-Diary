@@ -1,7 +1,7 @@
-NAVBAR_TINT_COLOR = '#444'.uicolor
-NAVBAR_BUTTON_TINT_COLOR = '#1ccaff'.uicolor
-NAVBAR_FONT = 'HelveticaNeue-Light'.uifont(22)
-NAVBAR_FONT_COLOR = '#fff'.uicolor
+NAVBAR_TINT_COLOR = '#fff'.uicolor
+NAVBAR_BUTTON_TINT_COLOR = '#e74c3c'.uicolor
+NAVBAR_FONT = 'HelveticaNeue'.uifont(22)
+NAVBAR_FONT_COLOR = '#E21818'.uicolor
 MENU_BACKGROUND_COLOR = '#111'.uicolor
 TOAST_BACKGROUND_COLOR = '#3498db'.uicolor
 TOAST_TEXT_COLOR = '#fff'.uicolor

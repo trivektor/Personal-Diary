@@ -67,6 +67,8 @@ Motion::Project::App.setup do |app|
     pod 'WebViewJavascriptBridge'
     pod 'GRMustache'
     pod 'SpinKit'
+    pod 'BFNavigationBarDrawer', :git => 'https://github.com/DrummerB/BFNavigationBarDrawer'
+    pod 'REMenu'
   end
 
 end

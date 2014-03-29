@@ -36,7 +36,7 @@ class NewStoryController < BaseController
   TEXTVIEW_FONT = 'HelveticaNeue-Light'.uifont(19)
 
   attr_accessor :firebase, :story, :form, :speechSDK, :textView,
-                :speechRecognition, :titleTextField, :contentTextView
+                :speechRecognition, :titleTextField, :contentTextView, :menu
 
   def init
     setupSpeechRecognition
@@ -55,13 +55,14 @@ class NewStoryController < BaseController
   def viewDidLoad
     performHousekeepingTasks
     setupForm
+    createOptionsMenu
   end
 
   def performHousekeepingTasks
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
-    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'ok-sign', touchHandler: 'createStory')
+    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'gear', touchHandler: 'toggleOptionsMenu')
   end
 
   def setupForm
@@ -73,6 +74,12 @@ class NewStoryController < BaseController
     @textView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
     view.addSubview(@textView)
     @textView.becomeFirstResponder
+  end
+
+  def createOptionsMenu
+    @recordItem = REMenuItem.alloc.initWithTitle('Record', subtitle: 'Speak instead of typing', image: nil, highlightedImage: nil, action: -> {})
+    @saveItem = REMenuItem.alloc.initWithTitle('Save', subtitle: 'Save your story', image: nil, highlightedImage: nil, action: -> {})
+    @menu = REMenu.alloc.initWithItems([@recordItem, @saveItem])
   end
 
   def setupJavascriptBridge
@@ -131,6 +138,14 @@ class NewStoryController < BaseController
     @speechRecognition.delegate = self
     #@speechRecognition.listenAndRecognizeWithTimeout(SPEECH_TIMEOUT, error: nil)
     @speechRecognition.listen(nil)
+  end
+
+  def toggleOptionsMenu
+    if @menu.isOpen
+      @menu.close
+    else
+      @menu.showFromNavigationController(self.navigationController)
+    end
   end
 
   # Gesture detection

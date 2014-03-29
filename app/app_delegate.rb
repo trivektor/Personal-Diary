@@ -41,7 +41,7 @@ class AppDelegate
       NSForegroundColorAttributeName => NAVBAR_FONT_COLOR
     )
 
-    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent
+    #UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent
     window.tintColor = '#fff'.uicolor
 
     # CRToastManager
