@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:trivektor/fontawesome.git
-  revision: 8b2e214c2b2c4d1f48437f0ed9184c3e8f328122
+  revision: 293297fb124165df1ef4b3ce3f5c965256a52a1c
   specs:
     motion-fontawesome (0.0.2)
       rake
@@ -57,7 +57,7 @@ GEM
     nap (0.6.0)
     open4 (1.3.1)
     plist (3.1.0)
-    rake (10.1.1)
+    rake (10.2.2)
     ruby-xcdm (0.0.7)
       activesupport (~> 3.2)
       builder (~> 3.2)
