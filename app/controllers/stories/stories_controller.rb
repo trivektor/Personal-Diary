@@ -1,6 +1,6 @@
 class StoriesController < BaseController
 
-  attr_accessor :table, :stories
+  attr_accessor :table, :stories, :animator
 
   ROW_HEIGHT = 70
   VIEW_BUTTON_TITLE_COLOR = '#fff'.uicolor
@@ -150,7 +150,10 @@ class StoriesController < BaseController
 
   def createStory
     controller = UINavigationController.alloc.initWithRootViewController(NewStoryController.new)
-    controller.modalPresentationStyle = UIModalPresentationFormSheet
+    controller.modalPresentationStyle = UIModalPresentationCustom
+    self.animator = ZFModalTransitionAnimator.alloc.initWithModalViewController(controller)
+    animator.direction = ZFModalTransitonDirectionRight
+    controller.transitioningDelegate = animator
     presentViewController(controller, animated: true, completion: nil)
   end
 

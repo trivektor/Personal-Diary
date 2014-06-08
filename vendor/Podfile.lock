@@ -33,6 +33,7 @@ PODS:
   - RESideMenu (3.4)
   - SpinKit (1.0.1)
   - WebViewJavascriptBridge (4.1.0)
+  - ZFDragableModalTransition (0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
@@ -50,27 +51,29 @@ DEPENDENCIES:
   - RESideMenu
   - SpinKit
   - WebViewJavascriptBridge
+  - ZFDragableModalTransition
 
 EXTERNAL SOURCES:
   BFNavigationBarDrawer:
     :git: https://github.com/DrummerB/BFNavigationBarDrawer
 
 SPEC CHECKSUMS:
-  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
-  AMScrollingNavbar: f94a15ec7abcd19b796498ed854d90f647582fd5
+  AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
+  AMScrollingNavbar: 1f89bc7ffbb8c3a674f2fb9080978d3fa3b1acf0
   BFNavigationBarDrawer: 22e2c782996913dbe2269ed8e2e09710bdc220f2
-  CRToast: 5be332fb9f4bcfd3023b6f10324ed9738c35cb96
-  CXAlertView: 59e8305700c59a27730c636765cb76311d311b88
-  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
-  FontAwesome+iOS: 243c5309e90d5788909b0f859f75ecff4a20f88f
-  FontAwesomeIconFactory: eb4101e952987a817b1f37b73f45cd59acb1a0bb
-  GRMustache: 69ba0c15859e603e0dacb04e9af09ecefe7ecc9f
-  JRSwizzle: 6242ff38485d870fc2636899048ee1ab883ae587
-  MSCMoreOptionTableViewCell: ac1dd0c62ca6308b139f191b0e1cef35c9de3a2f
-  NSDate+TimeAgo: fe93d3042e83093ae3630bc47ae7d57f782733f6
-  REMenu: 9ee5b3bea51ce8e48b550feb9b50203d6ad27499
-  RESideMenu: d8d6330052e0348718826045b912a1c71748357d
-  SpinKit: c7490233be81d8daf41da05dc463351423658aad
-  WebViewJavascriptBridge: eb504e9485f5b7f3fa036b6f0d748cfccb2aa18b
+  CRToast: ed28c54d5e932f2f74cf5fe10b678cef9f3247da
+  CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
+  Facebook-iOS-SDK: 91763fa21b97c175dc072b5278a606b2aff62366
+  FontAwesome+iOS: 3c574273fb301c2e0a88f983551562bf8768b623
+  FontAwesomeIconFactory: a60171039c8067b7fd04d0300f0a7f8fc5cffbae
+  GRMustache: 34d00ff4c1ac743af823cb2d5b748c7950c45e3f
+  JRSwizzle: 30da7a2c539a4ebf954b16d15f6dd8221c9f6fa5
+  MSCMoreOptionTableViewCell: e9aeaca2f366b342be31b8c28b153210757d2142
+  NSDate+TimeAgo: c01d6ac0b81add41f77f264fa4276d355723fcde
+  REMenu: 531a8b6bc7764a2fe4ceda7a533399a09184b250
+  RESideMenu: a583194f1091b0222a1535864de04227ff497618
+  SpinKit: 563a00196a87d789b16e3592265f0dfa9c3fb9db
+  WebViewJavascriptBridge: 81cfaf48e1f9bafa8de3d4bf503981c9da10e08f
+  ZFDragableModalTransition: 734279090d537b1f701b6efdccd41b0f78503de9
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1
