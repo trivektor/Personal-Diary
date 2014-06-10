@@ -3,13 +3,9 @@ class StoriesController < BaseController
   attr_accessor :table, :stories, :animator
 
   ROW_HEIGHT = 70
-  VIEW_BUTTON_TITLE_COLOR = '#fff'.uicolor
-  VIEW_BUTTON_BACKGROUND_COLOR = '#1ccaff'.uicolor
   VIEW_BUTTON_TITLE = 'view'
-  DELETE_BUTTON_TITLE_COLOR = '#fff'.uicolor
-  DELETE_BUTTON_BACKGROUND_COLOR = '#ff312d'.uicolor
   DELETE_BUTTON_TITLE = 'delete'
-  TITLE_FONT = 'HelveticaNeue-Light'.uifont(17)
+  TITLE_FONT = 'HelveticaNeue'.uifont(17)
   CREATION_DATE_FONT = 'HelveticaNeue-Thin'.uifont(14)
 
   def viewDidLoad
@@ -73,6 +69,7 @@ class StoriesController < BaseController
     end
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     cell.textLabel.text = story.title
+    cell.textLabel.textColor = NEPHRITIS_COLOR
     cell.textLabel.font = TITLE_FONT
     cell.detailTextLabel.text = story.timeAndLocation
     cell.detailTextLabel.font = CREATION_DATE_FONT
@@ -116,11 +113,11 @@ class StoriesController < BaseController
   end
 
   def tableView(tableView, titleColorForMoreOptionButtonForRowAtIndexPath: indexPath)
-    VIEW_BUTTON_TITLE_COLOR
+    '#fff'.uicolor
   end
 
   def tableView(tableView, backgroundColorForMoreOptionButtonForRowAtIndexPath: indexPath)
-    VIEW_BUTTON_BACKGROUND_COLOR
+    PETER_RIVER_COLOR
   end
 
   def tableView(tableView, titleForDeleteConfirmationButtonForRowAtIndexPath: indexPath)
@@ -128,11 +125,11 @@ class StoriesController < BaseController
   end
 
   def tableView(tableView, titleColorForDeleteConfirmationButtonForRowAtIndexPath: indexPath)
-    DELETE_BUTTON_TITLE_COLOR
+    '#fff'.uicolor
   end
 
   def tableView(tableView, backgroundColorForDeleteConfirmationButtonForRowAtIndexPath: indexPath)
-    DELETE_BUTTON_BACKGROUND_COLOR
+    ALIZARIN_COLOR
   end
 
   def tableView(tableView, moreOptionButtonPressedInRowAtIndexPath: indexPath)

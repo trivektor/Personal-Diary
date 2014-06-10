@@ -34,14 +34,14 @@ class AppDelegate
 
   def customizeAppearances
     # UINavigationBar appearance
-    UINavigationBar.appearance.setBarTintColor(NAVBAR_TINT_COLOR)
+    UINavigationBar.appearance.setBarTintColor(EMERALD_COLOR)
     UIBarButtonItem.appearance.setTintColor(NAVBAR_FONT_COLOR)
     UINavigationBar.appearance.setTitleTextAttributes(
       UITextAttributeFont => NAVBAR_FONT,
       NSForegroundColorAttributeName => NAVBAR_FONT_COLOR
     )
 
-    #UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent
+    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent
     window.tintColor = '#fff'.uicolor
 
     # CRToastManager
@@ -49,7 +49,7 @@ class AppDelegate
       'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar,
       'kCRToastFontKey' => TOAST_FONT,
       'kCRToastTextColorKey' => TOAST_TEXT_COLOR,
-      'kCRToastBackgroundColorKey' => TOAST_BACKGROUND_COLOR
+      'kCRToastBackgroundColorKey' => EMERALD_COLOR
     )
   end
 
