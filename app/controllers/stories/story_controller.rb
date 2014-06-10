@@ -49,7 +49,7 @@ class NewStoryController < BaseController
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @jsBridge.send({recognized_text: result.text})
+    @textView.text = @textView.text.to_s + result.text
   end
 
   def viewDidLoad
@@ -77,24 +77,13 @@ class NewStoryController < BaseController
   end
 
   def createOptionsMenu
-    @recordItem = REMenuItem.alloc.initWithTitle('Record', subtitle: 'Speak instead of typing', image: nil, highlightedImage: nil, action: -> {})
+    @recordItem = REMenuItem.alloc.initWithTitle('Record', subtitle: 'Speak instead of typing', image: nil, highlightedImage: nil, action: lambda do |item|
+      recordContent
+    end)
     @saveItem = REMenuItem.alloc.initWithTitle('Save', subtitle: 'Save your story', image: nil, highlightedImage: nil, action: lambda do |item|
       createStory
     end)
     @menu = REMenu.alloc.initWithItems([@recordItem, @saveItem])
-  end
-
-  def setupJavascriptBridge
-    @jsBridge = WebViewJavascriptBridge.bridgeForWebView(@webView, webViewDelegate: self, handler: lambda { |data, callback|
-      if data[:phone_input]
-        recordContent
-      elsif data[:create_story]
-        createStory(title: data[:title], content: data[:content])
-        # controller = UINavigationController.alloc.initWithRootViewController(MapViewController.new)
-        # controller.modalPresentationStyle = UIModalPresentationFormSheet
-        # presentViewController(controller, animated: true, completion: nil)
-      end
-    })
   end
 
   def createStory
@@ -138,7 +127,7 @@ class NewStoryController < BaseController
   def recordContent
     @speechRecognition = ISSpeechRecognition.alloc.init
     @speechRecognition.delegate = self
-    #@speechRecognition.listenAndRecognizeWithTimeout(SPEECH_TIMEOUT, error: nil)
+    @speechRecognition.listenAndRecognizeWithTimeout(SPEECH_TIMEOUT, error: nil)
     @speechRecognition.listen(nil)
   end
 
