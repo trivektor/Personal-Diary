@@ -149,7 +149,7 @@ class StoriesController < BaseController
     controller = UINavigationController.alloc.initWithRootViewController(NewStoryController.new)
     controller.modalPresentationStyle = UIModalPresentationCustom
     self.animator = ZFModalTransitionAnimator.alloc.initWithModalViewController(controller)
-    animator.direction = ZFModalTransitonDirectionRight
+    animator.direction = ZFModalTransitonDirectionBottom
     controller.transitioningDelegate = animator
     presentViewController(controller, animated: true, completion: nil)
   end

@@ -33,7 +33,7 @@ class NewStoryController < BaseController
 
   SPEECH_TIMEOUT = 20
   TEMPLATE = 'templates/new_story'
-  TEXTVIEW_FONT = 'HelveticaNeue-Light'.uifont(19)
+  TEXTVIEW_FONT = 'HelveticaNeue-Light'.uifont(18)
 
   attr_accessor :firebase, :story, :form, :speechSDK, :textView,
                 :speechRecognition, :titleTextField, :contentTextView, :menu
@@ -49,7 +49,7 @@ class NewStoryController < BaseController
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @textView.text = @textView.text.to_s + result.text
+    @textView.insertText(result.text.to_s)
   end
 
   def viewDidLoad
@@ -72,6 +72,7 @@ class NewStoryController < BaseController
     @textView.delegate = self
     @textView.font = TEXTVIEW_FONT
     @textView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+    @textView.tintColor = NEPHRITIS_COLOR
     view.addSubview(@textView)
     @textView.becomeFirstResponder
   end
