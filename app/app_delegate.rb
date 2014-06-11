@@ -48,8 +48,8 @@ class AppDelegate
     CRToastManager.setDefaultOptions(
       'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar,
       'kCRToastFontKey' => TOAST_FONT,
-      'kCRToastTextColorKey' => TOAST_TEXT_COLOR,
-      'kCRToastBackgroundColorKey' => EMERALD_COLOR
+      'kCRToastTextColorKey' => EMERALD_COLOR,
+      'kCRToastBackgroundColorKey' => '#fff'.uicolor
     )
   end
 

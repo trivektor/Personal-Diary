@@ -145,10 +145,6 @@ class NewStoryController < BaseController
     true
   end
 
-  def gatherFormData
-    @jsBridge.send(gather_form_data: true)
-  end
-
   # Shake detection
   def motionEnded(motion, withEvent: event)
     if event.subtype == UIEventSubtypeMotionShake

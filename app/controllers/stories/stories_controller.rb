@@ -43,10 +43,6 @@ class StoriesController < BaseController
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'pencil', touchHandler: 'createStory')
   end
 
-  def registerEvents
-    'StoryCreated'.add_observer(self, 'fetchStoriesFromFirebase')
-  end
-
   def updateTitle
     navigationItem.title = "Stories (#{@stories.count})"
   end
@@ -141,8 +137,7 @@ class StoriesController < BaseController
   def tableView(tableView, deleteStoryAtIndexPath: indexPath)
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     story.destroy
-    cdq.save
-    reload
+    fetchStoriesFromFirebase
   end
 
   def createStory
@@ -152,11 +147,6 @@ class StoriesController < BaseController
     animator.direction = ZFModalTransitonDirectionBottom
     controller.transitioningDelegate = animator
     presentViewController(controller, animated: true, completion: nil)
-  end
-
-  def reload
-    @table.reloadData
-    updateTitle
   end
 
 end
