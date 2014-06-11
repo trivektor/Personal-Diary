@@ -27,7 +27,7 @@ class StoryController < BaseController
 
 end
 
-class NewStoryController < BaseController
+class NewStoryController < BPFormViewController
 
   include UIViewControllerExtension
 
@@ -38,27 +38,24 @@ class NewStoryController < BaseController
   attr_accessor :firebase, :story, :form, :speechSDK, :textView,
                 :speechRecognition, :titleTextField, :contentTextView, :menu
 
-  def init
-    setupSpeechRecognition
-    self
-  end
-
   def setupSpeechRecognition
     @speechSDK = NSClassFromString('iSpeechSDK').sharedSDK
     @speechSDK.APIKey = ISPEECH_API_KEY
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @textView.insertText(result.text.to_s)
+    @contentCell.textView.insertText(result.text.to_s)
   end
 
   def viewDidLoad
+    super
     performHousekeepingTasks
     setupForm
     createOptionsMenu
   end
 
   def performHousekeepingTasks
+    setupSpeechRecognition
     navigationItem.title = 'New Story'
     view.backgroundColor = '#fff'.uicolor
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
@@ -66,15 +63,24 @@ class NewStoryController < BaseController
   end
 
   def setupForm
-    # 216 is the height of the keyboard
-    height = view.frame.size.height - 216
-    @textView = UITextView.alloc.initWithFrame([[0, 0], [320, height]])
-    @textView.delegate = self
-    @textView.font = TEXTVIEW_FONT
-    @textView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
-    @textView.tintColor = NEPHRITIS_COLOR
-    view.addSubview(@textView)
-    @textView.becomeFirstResponder
+    @titleCell = BPFormFloatInputTextFieldCell.alloc.init
+    @titleCell.textField.placeholder = 'Title'
+    @titleCell.textField.delegate = self
+    @titleCell.customCellHeight = 50
+    @titleCell.customContentWidth = 320
+    @titleCell.backgroundColor = UIColor.clearColor
+    @titleCell.textField.becomeFirstResponder
+
+    @contentCell = BPFormFloatInputTextViewCell.alloc.init
+    @contentCell.placeholder = 'Content'
+    @contentCell.backgroundColor = UIColor.clearColor
+    @contentCell.textView.delegate = self
+    @contentCell.textView.tintColor = NEPHRITIS_COLOR
+    @contentCell.textView.font = TEXTVIEW_FONT
+    @contentCell.customCellHeight = 300
+    @contentCell.customContentWidth = 320
+
+    self.formCells = [[@titleCell, @contentCell], []]
   end
 
   def createOptionsMenu
@@ -89,7 +95,7 @@ class NewStoryController < BaseController
 
   def createStory
     showProgress
-    attrs = {content: @textView.text}
+    attrs = {content: @contentCell.textView.text}
 
     BW::Location.get_once do |loc|
       location = CLLocation.alloc.initWithLatitude(loc.latitude, longitude: loc.longitude)
@@ -148,7 +154,8 @@ class NewStoryController < BaseController
   # Shake detection
   def motionEnded(motion, withEvent: event)
     if event.subtype == UIEventSubtypeMotionShake
-      @jsBridge.send(clear_form: true)
+      @contentCell.textView.text = ''
+      @titleCell.textField.text = ''
     end
   end
 
