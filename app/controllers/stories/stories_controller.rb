@@ -11,12 +11,12 @@ class StoriesController < BaseController
   def viewDidLoad
     @stories = []
     performHousekeepingTasks
-    fetchStoriesFromFirebase
     showProgress
   end
 
   def performHousekeepingTasks
     super
+    setupFirebase
     updateTitle
     @table = createTable
     view.addSubview(@table)
@@ -24,15 +24,16 @@ class StoriesController < BaseController
     createBarButtonItems
   end
 
-  def fetchStoriesFromFirebase
-    @firebase = FirebaseManager.sharedInstance.observeEventType(FEventTypeValue, withBlock: lambda do |snapshot|
-      unless snapshot.value.is_a? Hash
-        hideProgress
-        break
+  def setupFirebase
+    FirebaseManager.sharedInstance.observeEventType(FEventTypeValue, withBlock: lambda do |snapshot|
+      @stories = []
+
+      if snapshot.value.is_a? Hash
+        @stories += snapshot.value.map do |key, story_attrs|
+          Story.new(key, story_attrs)
+        end.sort_by(&:timestamp).reverse
       end
-      @stories = snapshot.value.map do |key, story_attrs|
-        Story.new(key, story_attrs)
-      end.sort_by(&:timestamp).reverse
+
       updateTitle
       @table.reloadData
       hideProgress
@@ -137,7 +138,6 @@ class StoriesController < BaseController
   def tableView(tableView, deleteStoryAtIndexPath: indexPath)
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     story.destroy
-    fetchStoriesFromFirebase
   end
 
   def createStory
