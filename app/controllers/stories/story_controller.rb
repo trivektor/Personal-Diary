@@ -27,7 +27,7 @@ class StoryController < BaseController
 
 end
 
-class NewStoryController < BPFormViewController
+class NewStoryController < Formotion::FormController
 
   include UIViewControllerExtension
 
@@ -38,19 +38,49 @@ class NewStoryController < BPFormViewController
   attr_accessor :firebase, :story, :form, :speechSDK, :textView,
                 :speechRecognition, :titleTextField, :contentTextView, :menu
 
+  def init
+    @form = Formotion::Form.new(
+      sections: [
+        {
+          title: 'Title',
+          rows: [
+            {
+              key: 'title',
+              type: 'string',
+              font: {name: 'HelveticaNeue-Light', size: 18},
+              text_alignment: 'left'
+            }
+          ]
+        },
+        {
+          title: 'Content',
+          rows: [
+            {
+              key: 'content',
+              type: 'text',
+              row_height: 300,
+              font: {name: 'HelveticaNeue-Light', size: 18}
+            }
+          ]
+        }
+      ]
+    )
+
+    super.initWithForm(@form)
+  end
+
   def setupSpeechRecognition
     @speechSDK = NSClassFromString('iSpeechSDK').sharedSDK
     @speechSDK.APIKey = ISPEECH_API_KEY
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @contentCell.textView.insertText(result.text.to_s)
+    @contentTextView.insertText(result.text.to_s)
   end
 
   def viewDidLoad
     super
     performHousekeepingTasks
-    setupForm
     createOptionsMenu
   end
 
@@ -60,27 +90,6 @@ class NewStoryController < BPFormViewController
     view.backgroundColor = '#fff'.uicolor
     navigationItem.leftBarButtonItem = createFontAwesomeButton(icon: 'remove', touchHandler: 'dismiss')
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'gear', touchHandler: 'toggleOptionsMenu')
-  end
-
-  def setupForm
-    @titleCell = BPFormFloatInputTextFieldCell.alloc.init
-    @titleCell.textField.placeholder = 'Title'
-    @titleCell.textField.delegate = self
-    @titleCell.customCellHeight = 50
-    @titleCell.customContentWidth = 320
-    @titleCell.backgroundColor = UIColor.clearColor
-    @titleCell.textField.becomeFirstResponder
-
-    @contentCell = BPFormFloatInputTextViewCell.alloc.init
-    @contentCell.placeholder = 'Content'
-    @contentCell.backgroundColor = UIColor.clearColor
-    @contentCell.textView.delegate = self
-    @contentCell.textView.tintColor = NEPHRITIS_COLOR
-    @contentCell.textView.font = TEXTVIEW_FONT
-    @contentCell.customCellHeight = 300
-    @contentCell.customContentWidth = 320
-
-    self.formCells = [[@titleCell, @contentCell], []]
   end
 
   def createOptionsMenu
@@ -95,7 +104,7 @@ class NewStoryController < BPFormViewController
 
   def createStory
     showProgress
-    attrs = {content: @contentCell.textView.text}
+    attrs = @form.render
 
     BW::Location.get_once do |loc|
       location = CLLocation.alloc.initWithLatitude(loc.latitude, longitude: loc.longitude)
@@ -154,8 +163,7 @@ class NewStoryController < BPFormViewController
   # Shake detection
   def motionEnded(motion, withEvent: event)
     if event.subtype == UIEventSubtypeMotionShake
-      @contentCell.textView.text = ''
-      @titleCell.textField.text = ''
+      # TODO: implement
     end
   end
 

@@ -19,13 +19,6 @@ PODS:
     - AFNetworking/NSURLConnection
   - AMScrollingNavbar (0.5.4)
   - BFNavigationBarDrawer (1.0.0)
-  - BPForms (2.0.1):
-    - BPForms/FloatLabel
-  - BPForms/Core (2.0.1):
-    - Masonry
-  - BPForms/FloatLabel (2.0.1):
-    - BPForms/Core
-    - JVFloatLabeledTextField
   - CRToast (0.0.5)
   - CXAlertView (1.0.1)
   - Facebook-iOS-SDK (3.12.0)
@@ -34,8 +27,6 @@ PODS:
   - GRMustache (6.9.1):
     - JRSwizzle (~> 1.0)
   - JRSwizzle (1.0)
-  - JVFloatLabeledTextField (0.0.8)
-  - Masonry (0.5.2)
   - MSCMoreOptionTableViewCell (1.1)
   - NSDate+TimeAgo (1.0.2)
   - REMenu (1.8.4)
@@ -48,7 +39,6 @@ DEPENDENCIES:
   - AFNetworking (~> 2.1.0)
   - AMScrollingNavbar
   - BFNavigationBarDrawer (from `https://github.com/DrummerB/BFNavigationBarDrawer`)
-  - BPForms
   - CRToast
   - CXAlertView
   - Facebook-iOS-SDK
@@ -71,7 +61,6 @@ SPEC CHECKSUMS:
   AFNetworking: 7c33510b46f994bc75b75c6e63c1d83414ca40f2
   AMScrollingNavbar: 1f89bc7ffbb8c3a674f2fb9080978d3fa3b1acf0
   BFNavigationBarDrawer: 22e2c782996913dbe2269ed8e2e09710bdc220f2
-  BPForms: 4ce81b5e9e92a904e0dfc765f0e24ca86e579a41
   CRToast: ed28c54d5e932f2f74cf5fe10b678cef9f3247da
   CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
   Facebook-iOS-SDK: 91763fa21b97c175dc072b5278a606b2aff62366
@@ -79,8 +68,6 @@ SPEC CHECKSUMS:
   FontAwesomeIconFactory: a60171039c8067b7fd04d0300f0a7f8fc5cffbae
   GRMustache: 34d00ff4c1ac743af823cb2d5b748c7950c45e3f
   JRSwizzle: 30da7a2c539a4ebf954b16d15f6dd8221c9f6fa5
-  JVFloatLabeledTextField: 16dea87b899a7b62026eb8d8cf9902c08b1953da
-  Masonry: ec0189e1a07af00913e4a1a335ea76887adc86e1
   MSCMoreOptionTableViewCell: e9aeaca2f366b342be31b8c28b153210757d2142
   NSDate+TimeAgo: c01d6ac0b81add41f77f264fa4276d355723fcde
   REMenu: 531a8b6bc7764a2fe4ceda7a533399a09184b250

@@ -66,7 +66,7 @@ module UIViewControllerExtension
     unless @progressIndicator
       screenBounds = UIScreen.mainScreen.bounds
       screenWidth = CGRectGetWidth(screenBounds)
-      @progressIndicator = RTSpinKitView.alloc.initWithStyle(options[:style] || RTSpinKitViewStylePulse)
+      @progressIndicator = RTSpinKitView.alloc.initWithStyle(options[:style] || RTSpinKitViewStyleWave)
       @progressIndicator.center = CGPointMake(
         options[:center_x] || CGRectGetMidX(screenBounds),
         options[:center_y] || CGRectGetMidY(screenBounds) - 20

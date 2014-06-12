@@ -70,7 +70,6 @@ Motion::Project::App.setup do |app|
     pod 'BFNavigationBarDrawer', :git => 'https://github.com/DrummerB/BFNavigationBarDrawer'
     pod 'REMenu'
     pod 'ZFDragableModalTransition'
-    pod 'BPForms'
   end
 
 end
