@@ -84,6 +84,11 @@ class NewStoryController < Formotion::FormController
     createOptionsMenu
   end
 
+  def tableView(tableView, willDisplayCell: cell, forRowAtIndexPath: indexPath)
+    # This method is not called
+    NSLog 'hello'
+  end
+
   def performHousekeepingTasks
     setupSpeechRecognition
     navigationItem.title = 'New Story'
