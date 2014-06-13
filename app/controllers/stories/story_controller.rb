@@ -35,8 +35,7 @@ class NewStoryController < Formotion::FormController
   TEMPLATE = 'templates/new_story'
   TEXTVIEW_FONT = 'HelveticaNeue-Light'.uifont(18)
 
-  attr_accessor :firebase, :story, :form, :speechSDK, :textView,
-                :speechRecognition, :titleTextField, :contentTextView, :menu
+  attr_accessor :firebase, :story
 
   def init
     @form = Formotion::Form.new(
@@ -75,18 +74,17 @@ class NewStoryController < Formotion::FormController
   end
 
   def recognition(speechRecognition, didGetRecognitionResult: result)
-    @contentTextView.insertText(result.text.to_s)
+    @contentTextView.value = result.text.to_s
   end
 
   def viewDidLoad
     super
+    @contentTextView = @form.row_for_index_path(NSIndexPath.indexPathForRow(0, inSection: 1))
+    @titleTextField = @form.row_for_index_path(NSIndexPath.indexPathForRow(0, inSection: 0))
+
+    @titleTextField.value = 'Untitled'
     performHousekeepingTasks
     createOptionsMenu
-  end
-
-  def tableView(tableView, willDisplayCell: cell, forRowAtIndexPath: indexPath)
-    # This method is not called
-    NSLog 'hello'
   end
 
   def performHousekeepingTasks
@@ -169,6 +167,8 @@ class NewStoryController < Formotion::FormController
   def motionEnded(motion, withEvent: event)
     if event.subtype == UIEventSubtypeMotionShake
       # TODO: implement
+      @titleTextField.value = ''
+      @contentTextView.value = ''
     end
   end
 
