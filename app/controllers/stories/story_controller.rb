@@ -44,10 +44,11 @@ class NewStoryController < Formotion::FormController
           title: 'Title',
           rows: [
             {
-              key: 'title',
-              type: 'string',
+              key: :title,
+              type: :string,
               font: {name: 'HelveticaNeue-Light', size: 18},
-              text_alignment: 'left'
+              text_alignment: 'left',
+              placeholder: 'Title of Your Story'
             }
           ]
         },
@@ -55,10 +56,11 @@ class NewStoryController < Formotion::FormController
           title: 'Content',
           rows: [
             {
-              key: 'content',
-              type: 'text',
+              key: :content,
+              type: :text,
               row_height: 300,
-              font: {name: 'HelveticaNeue-Light', size: 18}
+              font: {name: 'HelveticaNeue-Light', size: 18},
+              placeholder: 'Content of Your Story'
             }
           ]
         }
@@ -82,7 +84,6 @@ class NewStoryController < Formotion::FormController
     @contentTextView = @form.row_for_index_path(NSIndexPath.indexPathForRow(0, inSection: 1))
     @titleTextField = @form.row_for_index_path(NSIndexPath.indexPathForRow(0, inSection: 0))
 
-    @titleTextField.value = 'Untitled'
     performHousekeepingTasks
     createOptionsMenu
   end
