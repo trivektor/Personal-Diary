@@ -1,11 +1,11 @@
 class CurrentUserManager
 
-  def self.initWithUser(user)
+  def self.init_with_user(user)
     Dispatch.once { @user ||= user }
     @user
   end
 
-  def self.sharedInstance
+  def self.shared_instance
     @user
   end
 

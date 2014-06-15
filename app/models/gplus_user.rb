@@ -12,12 +12,16 @@ class GPlusUser
     @gppsignin.userEmail
   end
 
-  def googlePlusUser
+  def google_plus_user
     @gppsignin.googlePlusUser
   end
 
   def language
     @gppsignin.language
+  end
+
+  def firebase_id
+    "gplus-#{user_id}"
   end
 
 end

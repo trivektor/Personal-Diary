@@ -25,7 +25,7 @@ class StoriesController < BaseController
   end
 
   def setupFirebase
-    FirebaseManager.sharedInstance.observeEventType(FEventTypeValue, withBlock: lambda do |snapshot|
+    FirebaseManager.shared_instance.observeEventType(FEventTypeValue, withBlock: lambda do |snapshot|
       @stories = []
 
       if snapshot.value.is_a? Hash
@@ -68,7 +68,7 @@ class StoriesController < BaseController
     cell.textLabel.text = story.title
     cell.textLabel.textColor = NEPHRITIS_COLOR
     cell.textLabel.font = TITLE_FONT
-    cell.detailTextLabel.text = story.timeAndLocation
+    cell.detailTextLabel.text = story.time_and_location
     cell.detailTextLabel.font = CREATION_DATE_FONT
     cell.selectionStyle = UITableViewCellSelectionStyleNone
     cell.delegate = self

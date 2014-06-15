@@ -19,7 +19,7 @@ class Story
     @attrs['timestamp']
   end
 
-  def creationTimeAgo
+  def creation_time_ago
     NSDate.dateWithTimeIntervalSince1970(timestamp).timeAgo
   end
 
@@ -27,19 +27,19 @@ class Story
     @attrs.values_at('city', 'state').compact.join(', ')
   end
 
-  def timeAndLocation
-    "#{creationTimeAgo} near #{location}"
+  def time_and_location
+    "#{creation_time_ago} near #{location}"
   end
 
   def destroy
-    FirebaseManager.sharedInstance.childByAppendingPath(key).clear!
+    FirebaseManager.shared_instance.childByAppendingPath(key).clear!
   end
 
   def to_json
     {
       'title' => title,
       'content' => content,
-      'creation_date' => creationTimeAgo
+      'creation_date' => creation_time_ago
     }
   end
 
@@ -47,7 +47,7 @@ class Story
     unless attrs[:title].to_s.length > 0
       attrs[:title] = "Story on #{Time.now.strftime('%B %d %Y')}"
     end
-    FirebaseManager.sharedInstance.childByAutoId.set(attrs.merge(timestamp: Time.now.to_i))
+    FirebaseManager.shared_instance.childByAutoId.set(attrs.merge(timestamp: Time.now.to_i))
   end
 
 end
