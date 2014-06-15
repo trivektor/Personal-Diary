@@ -4,24 +4,26 @@ class LoginController < UIViewController
     super
     navigationItem.title = 'Login'
 
-    init_GPP_signin
-    @loginBtn = UIButton.alloc.initWithFrame([[40, 200], [240, 100]])
-    @loginBtn.backgroundColor = ALIZARIN_COLOR
-    @loginBtn.addTarget(self, action: 'login', forControlEvents: UIControlEventTouchUpInside)
-    @loginBtn.title = 'Login with Google+'
-    @loginBtn.setTitleColor('#fff'.uicolor, forState: UIControlStateNormal)
-    view.addSubview(@loginBtn)
-
+    init_gpp_signin
+    create_login_button
     GPPSignIn.sharedInstance.trySilentAuthentication
   end
   
-  def init_GPP_signin
+  def init_gpp_signin
     shared_instance = GPPSignIn.sharedInstance
     shared_instance.shouldFetchGoogleUserID = true
     shared_instance.shouldFetchGoogleUserEmail = true
     shared_instance.shouldFetchGooglePlusUser = true
     shared_instance.scopes = [GPP_AUTH_SCOPE_LOGIN, GPP_AUTH_SCOPE_PROFILE_EMAIL_READ]
     shared_instance.delegate = self
+  end
+
+  def create_login_button
+    @loginBtn = UIButton.buttonWithType(UIButtonTypeCustom)
+    @loginBtn.frame = CGRectMake(20, 200, 280, 62)
+    @loginBtn.setBackgroundImage('signin-with-gplus.png'.uiimage, forState: UIControlStateNormal)
+    @loginBtn.addTarget(self, action: 'login', forControlEvents: UIControlEventTouchUpInside)
+    view.addSubview(@loginBtn)
   end
 
   def login
