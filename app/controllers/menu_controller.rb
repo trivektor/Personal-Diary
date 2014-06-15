@@ -124,6 +124,11 @@ class MenuController < UIViewController
   end
 
   def tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    if indexPath.row == 1
+      # Signout
+      GPPSignIn.sharedInstance.signOut
+      view.window.rootViewController = UINavigationController.alloc.initWithRootViewController(LoginController.new)
+    end
   end
 
   def navigateToSelectedController(controller)
