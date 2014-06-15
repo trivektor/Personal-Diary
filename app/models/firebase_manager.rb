@@ -1,15 +1,15 @@
 class FirebaseManager
 
-  def self.initWithUser(user)
+  def self.init_with_user(user)
     Dispatch.once do
-      @firebase ||= Firebase.new(FIREBASE_URL).childByAppendingPath(user.firebaseId)
+      @firebase_instance ||= Firebase.new(FIREBASE_URL)[user.firebase_id]
     end
 
-    @firebase
+    shared_instance
   end
 
-  def self.sharedInstance
-    @firebase
+  def self.shared_instance
+    @firebase_instance
   end
 
 end

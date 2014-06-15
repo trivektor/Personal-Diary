@@ -12,7 +12,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Personal-Diary'
-  app.identifier = 'com.personaldiary.'
+  app.identifier = 'com.myapp.personaldiary'
   
   app.device_family = [:iphone]
   app.sdk_version = '7.1'
@@ -29,7 +29,8 @@ Motion::Project::App.setup do |app|
   app.libs += ['/usr/lib/libicucore.dylib', '/usr/lib/libc++.dylib']
 
   app.vendor_project('vendor/iSpeechSDK', :static, :products => ["libiSpeechSDK.a"], :headers_dir => "Headers")
-  #app.vendor_project('vendor/Firebase.framework', :static, :products => ['Firebase'] , :headers_dir => 'Headers')
+  app.vendor_project('vendor/GoogleOpenSource.framework', :static, :products => ['GoogleOpenSource'] , :headers_dir => 'Headers')
+  app.vendor_project('vendor/GooglePlus.framework', :static, :products => ['GooglePlus'] , :headers_dir => 'Headers')
 
   # Frameworks
   %w(
@@ -40,6 +41,7 @@ Motion::Project::App.setup do |app|
     CoreMotion
     CoreLocation
     CoreData
+    CoreText
     SystemConfiguration
     QuartzCore
     Security
@@ -50,9 +52,17 @@ Motion::Project::App.setup do |app|
     AVFoundation
     CFNetwork
     Security
+    AddressBook
+    AssetsLibrary
   ).each { |framework| app.frameworks << framework }
 
   app.info_plist['UIViewControllerBasedStatusBarAppearance'] = false
+
+  # This is how you register a new URL scheme, took me a while to figure out
+  app.info_plist['CFBundleURLTypes'] = [{
+    'CFBundleURLSchemes' => ['com.myapp.personaldiary'],
+    'CFBundleURLName' => 'com.myapp.personaldiary'
+  }]
 
   app.pods do
     pod 'Facebook-iOS-SDK'

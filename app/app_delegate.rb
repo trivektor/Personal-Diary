@@ -2,34 +2,27 @@ class AppDelegate
 
   include CDQ
 
-  attr_accessor :window, :facebook
+  attr_accessor :window
 
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.backgroundColor = UIColor.whiteColor
-    @window.makeKeyAndVisible
 
+    GPPSignIn.sharedInstance.setClientID(GPP_CLIENT_ID)
+    GPPSignIn.sharedInstance.delegate = self
     cdq.setup
     customizeAppearances
 
-    @facebook = Facebook.alloc.initWithAppId(FACEBOOK_KEY, andDelegate:self)
+    controller = GPPSignIn.sharedInstance.trySilentAuthentication ? StoriesController.new : LoginController.new
 
-    defaults = NSUserDefaults.standardUserDefaults
-    puts defaults.objectForKey("FBAccessToken")
-    puts defaults.objectForKey("FBExpirationDate")
-
-    if defaults.objectForKey("FBAccessToken") && defaults.objectForKey("FBExpirationDate")
-      @facebook.accessToken = defaults.objectForKey("FBAccessToken")
-      @facebook.expirationDate = defaults.objectForKey("FBExpirationDate")
-    end
-
-    if @facebook.isSessionValid
-      redirectAfterLogin
-    else
-      @facebook.authorize(FACEBOOK_PERMISSIONS)
-    end
+    @window.rootViewController = UINavigationController.alloc.initWithRootViewController(controller)
+    @window.makeKeyAndVisible
 
     true
+  end
+
+  def application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
   end
 
   def customizeAppearances
@@ -51,25 +44,6 @@ class AppDelegate
       'kCRToastTextColorKey' => EMERALD_COLOR,
       'kCRToastBackgroundColorKey' => '#fff'.uicolor
     )
-  end
-
-  def fbDidLogin
-    defaults = NSUserDefaults.standardUserDefaults
-
-    defaults.setObject(@facebook.accessToken, forKey:'FBAccessToken')
-    defaults.setObject(@facebook.expirationDate, forKey:'FBExpirationDate')
-    NSUserDefaults.standardUserDefaults.synchronize
-
-    redirectAfterLogin
-  end
-
-  def fbDidNotLogin
-    puts "Login failed!"
-  end
-
-  def redirectAfterLogin
-    puts "Facebook token is #{@facebook.accessToken}"
-    @window.rootViewController = LoadingController.new
   end
 
 end

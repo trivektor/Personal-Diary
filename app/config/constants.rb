@@ -13,3 +13,9 @@ TOAST_FONT = 'HelveticaNeue-Light'.uifont(21)
 FACEBOOK_PERMISSIONS = %w(email user_birthday publish_actions)
 FIREBASE_URL = 'http://personaldiary.firebaseio.com'
 SPINKIT_COLOR = '#2ecc71'.uicolor
+
+GPP_CLIENT_ID = '282668132672-jn9aosrggrfdeg59vg8m8ap22mjg6jb2.apps.googleusercontent.com'
+
+# Google+ scopes
+GPP_AUTH_SCOPE_LOGIN = 'https://www.googleapis.com/auth/plus.login'
+GPP_AUTH_SCOPE_PROFILE_EMAIL_READ = 'https://www.googleapis.com/auth/plus.profile.emails.read'

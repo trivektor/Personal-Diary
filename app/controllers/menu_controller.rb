@@ -39,7 +39,7 @@ class MenuCell < UITableViewCell
     self.backgroundColor = UIColor.clearColor
     case indexPath.row
     when 0
-      if CurrentUserManager.sharedInstance
+      if CurrentUserManager.shared_instance
         @image = UIImageView.alloc.initWithFrame([[10, 5], [36, 36]])
 
         @emailLabel = UILabel.alloc.initWithFrame([[56, 24], [243, 18]])
@@ -50,10 +50,13 @@ class MenuCell < UITableViewCell
         contentView.addSubview(@image)
         contentView.addSubview(@emailLabel)
 
-        currentUser = CurrentUserManager.sharedInstance
-        userImageData = NSData.dataWithContentsOfURL(currentUser.profile_picture.nsurl)
-        @image.image = UIImage.imageWithData(userImageData)
-        @textLabel.text = currentUser.full_name
+        currentUser = CurrentUserManager.shared_instance
+
+        # TODO: figure out how to get user Google+ profile picture to display here
+        # userImageData = NSData.dataWithContentsOfURL(currentUser.profile_picture.nsurl)
+        # @image.image = UIImage.imageWithData(userImageData)
+
+        @textLabel.text = currentUser.user_id
         @emailLabel.text = currentUser.email
       else
         @textLabel.text = 'Login'
