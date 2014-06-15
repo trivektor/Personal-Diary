@@ -16,12 +16,12 @@ class MenuCell < UITableViewCell
   def createLabels
     clearColor = UIColor.clearColor
 
-    @iconLabel = UILabel.alloc.initWithFrame([[15, 5], [36, 36]])
+    @iconLabel = UILabel.alloc.initWithFrame([[20, 10], [36, 36]])
     @iconLabel.textColor = '#fff'.uicolor
     @iconLabel.backgroundColor = clearColor
     @iconLabel.font = ICON_FONT
 
-    @textLabel = UILabel.alloc.initWithFrame([[56, 1], [243, 21]])
+    @textLabel = UILabel.alloc.initWithFrame([[56, 15], [243, 21]])
     @textLabel.textColor = '#fff'.uicolor
     @textLabel.backgroundColor = clearColor
     @textLabel.font = 'HelveticaNeue-Light'.uifont(18)
@@ -57,11 +57,15 @@ class MenuCell < UITableViewCell
         @image.image = UIImage.imageWithData(userImageData)
 
         @textLabel.text = currentUser.display_name
+        @textLabel.frame = CGRectMake(56, 1, 243, 21)
         @emailLabel.text = currentUser.email
       else
         @textLabel.text = 'Login'
         @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-lock')
       end
+    when 1
+      @textLabel.text = 'Sign out'
+      @iconLabel.text = NSString.fontAwesomeIconStringForIconIdentifier('icon-off')
     end
 
     if indexPath.row < 4
@@ -103,7 +107,7 @@ class MenuController < UIViewController
   end
 
   def tableView(tableView, numberOfRowsInSection: section)
-    1
+    2
   end
 
   def tableView(tableView, heightForRowAtIndexPath: indexPath)
