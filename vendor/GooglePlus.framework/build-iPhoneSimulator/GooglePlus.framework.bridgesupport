@@ -1,0 +1,379 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<constant const='true' declared_type='NSString*' name='kGPPShareErrorDomain' type='@'/>
+<enum name='kGPPErrorShareboxCanceled' value='-401'/>
+<enum name='kGPPErrorShareboxCanceledByClient' value='-402'/>
+<enum name='kGPPErrorShareboxUnknown' value='-499'/>
+<enum name='kGPPSignInButtonColorSchemeDark' value='0'/>
+<enum name='kGPPSignInButtonColorSchemeLight' value='1'/>
+<enum name='kGPPSignInButtonStyleIconOnly' value='2'/>
+<enum name='kGPPSignInButtonStyleStandard' value='0'/>
+<enum name='kGPPSignInButtonStyleWide' value='1'/>
+<class name='GPPDeepLink'>
+<method selector='deepLinkID'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='handleURL:sourceApplication:annotation:'>
+<arg declared_type='NSURL*' index='0' name='url' type='@'/>
+<arg declared_type='NSString*' index='1' name='sourceApplication' type='@'/>
+<arg declared_type='id' index='2' name='annotation' type='@'/>
+<retval declared_type='GPPDeepLink*' type='@'/>
+</method>
+<method class_method='true' selector='readDeepLinkAfterInstall'>
+<retval declared_type='GPPDeepLink*' type='@'/>
+</method>
+<method class_method='true' selector='setDelegate:'>
+<arg declared_type='id' index='0' name='delegate' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='source'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<class name='GPPShare'>
+<method selector='closeActiveNativeShareDialog'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='delegate'>
+<retval declared_type='NSObject*' type='@'/>
+</method>
+<method selector='handleURL:sourceApplication:annotation:'>
+<arg declared_type='NSURL*' index='0' name='url' type='@'/>
+<arg declared_type='NSString*' index='1' name='sourceApplication' type='@'/>
+<arg declared_type='id' index='2' name='annotation' type='@'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='nativeShareDialog'>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setDelegate:'>
+<arg declared_type='NSObject*' index='0' name='delegate' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='shareDialog'>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='sharedInstance'>
+<retval declared_type='GPPShare*' type='@'/>
+</method>
+</class>
+<class name='GPPSignIn'>
+<method selector='actions'>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method selector='attemptSSO'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='authenticate'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='authentication'>
+<retval declared_type='GTMOAuth2Authentication*' type='@'/>
+</method>
+<method selector='clientID'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='delegate'>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='disconnect'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='googlePlusUser'>
+<retval declared_type='GTLPlusPerson*' type='@'/>
+</method>
+<method selector='handleURL:sourceApplication:annotation:'>
+<arg declared_type='NSURL*' index='0' name='url' type='@'/>
+<arg declared_type='NSString*' index='1' name='sourceApplication' type='@'/>
+<arg declared_type='id' index='2' name='annotation' type='@'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='hasAuthInKeychain'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='homeServerClientID'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='idToken'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='keychainName'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='language'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='openIDRealm'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='plusService'>
+<retval declared_type='GTLServicePlus*' type='@'/>
+</method>
+<method selector='scopes'>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method selector='setActions:'>
+<arg declared_type='NSArray*' index='0' name='actions' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setAttemptSSO:'>
+<arg declared_type='BOOL' index='0' name='attemptSSO' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setAuthentication:'>
+<arg declared_type='GTMOAuth2Authentication*' index='0' name='authentication' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setClientID:'>
+<arg declared_type='NSString*' index='0' name='clientID' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setDelegate:'>
+<arg declared_type='id' index='0' name='delegate' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setGooglePlusUser:'>
+<arg declared_type='GTLPlusPerson*' index='0' name='googlePlusUser' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setHomeServerClientID:'>
+<arg declared_type='NSString*' index='0' name='homeServerClientID' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setIdToken:'>
+<arg declared_type='NSString*' index='0' name='idToken' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setKeychainName:'>
+<arg declared_type='NSString*' index='0' name='keychainName' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setLanguage:'>
+<arg declared_type='NSString*' index='0' name='language' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setOpenIDRealm:'>
+<arg declared_type='NSString*' index='0' name='openIDRealm' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setScopes:'>
+<arg declared_type='NSArray*' index='0' name='scopes' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setShouldFetchGooglePlusUser:'>
+<arg declared_type='BOOL' index='0' name='shouldFetchGooglePlusUser' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setShouldFetchGoogleUserEmail:'>
+<arg declared_type='BOOL' index='0' name='shouldFetchGoogleUserEmail' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setShouldFetchGoogleUserID:'>
+<arg declared_type='BOOL' index='0' name='shouldFetchGoogleUserID' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setUseClientIDForURLScheme:'>
+<arg declared_type='BOOL' index='0' name='useClientIDForURLScheme' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setUserEmail:'>
+<arg declared_type='NSString*' index='0' name='userEmail' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setUserID:'>
+<arg declared_type='NSString*' index='0' name='userID' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='sharedInstance'>
+<retval declared_type='GPPSignIn*' type='@'/>
+</method>
+<method selector='shouldFetchGooglePlusUser'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='shouldFetchGoogleUserEmail'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='shouldFetchGoogleUserID'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='signOut'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='trySilentAuthentication'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='useClientIDForURLScheme'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='userEmail'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='userID'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<class name='GPPSignInButton'>
+<method selector='colorScheme'>
+<retval declared_type='GPPSignInButtonColorScheme' type='i'/>
+</method>
+<method selector='setColorScheme:'>
+<arg declared_type='GPPSignInButtonColorScheme' index='0' name='colorScheme' type='i'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='setStyle:'>
+<arg declared_type='GPPSignInButtonStyle' index='0' name='style' type='i'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='style'>
+<retval declared_type='GPPSignInButtonStyle' type='i'/>
+</method>
+</class>
+<class name='GPPURLHandler'>
+<method class_method='true' selector='handleURL:sourceApplication:annotation:'>
+<arg declared_type='NSURL*' index='0' name='url' type='@'/>
+<arg declared_type='NSString*' index='1' name='sourceApplication' type='@'/>
+<arg declared_type='id' index='2' name='annotation' type='@'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+</class>
+<class name='NSObject'>
+<method selector='attachImage:'>
+<arg declared_type='UIImage*' index='0' name='imageAttachment' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='attachImageData:'>
+<arg declared_type='NSData*' index='0' name='imageData' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='attachVideoURL:'>
+<arg declared_type='NSURL*' index='0' name='videoAttachment' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='didDisconnectWithError:'>
+<arg declared_type='NSError*' index='0' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='didReceiveDeepLink:'>
+<arg declared_type='GPPDeepLink*' index='0' name='deepLink' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='finishedSharing:'>
+<arg declared_type='BOOL' index='0' name='shared' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='finishedSharingWithError:'>
+<arg declared_type='NSError*' index='0' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='finishedWithAuth:error:'>
+<arg declared_type='GTMOAuth2Authentication*' index='0' name='auth' type='@'/>
+<arg declared_type='NSError*' index='1' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='open'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='setCallToActionButtonWithLabel:URL:deepLinkID:'>
+<arg declared_type='NSString*' index='0' name='label' type='@'/>
+<arg declared_type='NSURL*' index='1' name='url' type='@'/>
+<arg declared_type='NSString*' index='2' name='deepLinkID' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setContentDeepLinkID:'>
+<arg declared_type='NSString*' index='0' name='contentDeepLinkID' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setPrefillText:'>
+<arg declared_type='NSString*' index='0' name='prefillText' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setPreselectedPeopleIDs:'>
+<arg declared_type='NSArray*' index='0' name='preselectedPeopleIDs' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setTitle:description:thumbnailURL:'>
+<arg declared_type='NSString*' index='0' name='title' type='@'/>
+<arg declared_type='NSString*' index='1' name='description' type='@'/>
+<arg declared_type='NSURL*' index='2' name='thumbnailURL' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setURLToShare:'>
+<arg declared_type='NSURL*' index='0' name='urlToShare' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<informal_protocol name='GPPDeepLinkDelegate'>
+<method selector='didReceiveDeepLink:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='GPPDeepLink*' index='0' name='deepLink' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+<informal_protocol name='GPPNativeShareBuilder'>
+<method selector='attachImage:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='UIImage*' index='0' name='imageAttachment' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='attachImageData:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='NSData*' index='0' name='imageData' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='attachVideoURL:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='NSURL*' index='0' name='videoAttachment' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setPreselectedPeopleIDs:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='NSArray*' index='0' name='preselectedPeopleIDs' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+</informal_protocol>
+<informal_protocol name='GPPShareBuilder'>
+<method selector='open' type='B8@0:4' type64='B16@0:8'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='setCallToActionButtonWithLabel:URL:deepLinkID:' type='@20@0:4@8@12@16' type64='@40@0:8@16@24@32'>
+<arg declared_type='NSString*' index='0' name='label' type='@'/>
+<arg declared_type='NSURL*' index='1' name='url' type='@'/>
+<arg declared_type='NSString*' index='2' name='deepLinkID' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setContentDeepLinkID:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='NSString*' index='0' name='contentDeepLinkID' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setPrefillText:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='NSString*' index='0' name='prefillText' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setTitle:description:thumbnailURL:' type='@20@0:4@8@12@16' type64='@40@0:8@16@24@32'>
+<arg declared_type='NSString*' index='0' name='title' type='@'/>
+<arg declared_type='NSString*' index='1' name='description' type='@'/>
+<arg declared_type='NSURL*' index='2' name='thumbnailURL' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='setURLToShare:' type='@12@0:4@8' type64='@24@0:8@16'>
+<arg declared_type='NSURL*' index='0' name='urlToShare' type='@'/>
+<retval declared_type='id' type='@'/>
+</method>
+</informal_protocol>
+<informal_protocol name='GPPShareDelegate'>
+<method selector='finishedSharing:' type='v12@0:4B8' type64='v20@0:8B16'>
+<arg declared_type='BOOL' index='0' name='shared' type='B'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='finishedSharingWithError:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='NSError*' index='0' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+<informal_protocol name='GPPSignInDelegate'>
+<method selector='didDisconnectWithError:' type='v12@0:4@8' type64='v24@0:8@16'>
+<arg declared_type='NSError*' index='0' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='finishedWithAuth:error:' type='v16@0:4@8@12' type64='v32@0:8@16@24'>
+<arg declared_type='GTMOAuth2Authentication*' index='0' name='auth' type='@'/>
+<arg declared_type='NSError*' index='1' name='error' type='@'/>
+<retval declared_type='void' type='v'/>
+</method>
+</informal_protocol>
+</signatures>
