@@ -48,7 +48,8 @@ class NewStoryController < Formotion::FormController
               type: :string,
               font: {name: 'HelveticaNeue-Light', size: 18},
               text_alignment: 'left',
-              placeholder: 'Title of Your Story'
+              placeholder: 'Title of Your Story',
+              auto_correction: :no
             }
           ]
         },
@@ -60,7 +61,8 @@ class NewStoryController < Formotion::FormController
               type: :text,
               row_height: 300,
               font: {name: 'HelveticaNeue-Light', size: 18},
-              placeholder: 'Content of Your Story'
+              placeholder: 'Content of Your Story',
+              auto_correction: :no
             }
           ]
         }
