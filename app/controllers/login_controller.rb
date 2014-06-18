@@ -7,7 +7,13 @@ class LoginController < UIViewController
     navigationItem.title = 'Login'
     showProgress
     init_gpp_signin
-    GPPSignIn.sharedInstance.trySilentAuthentication
+
+    if GPPSignIn.sharedInstance.hasAuthInKeychain
+      start_app
+    else
+      hideProgress
+      create_login_button
+    end
   end
 
   def init_gpp_signin
@@ -33,26 +39,28 @@ class LoginController < UIViewController
 
   def finishedWithAuth(auth, error: error)
     if error
+      hideProgress
       NSLog "auth error"
       NSLog error.inspect
     elsif auth
-      CurrentUserManager.init_with_user(GPlusUser.new(GPPSignIn.sharedInstance))
-      FirebaseManager.init_with_user(CurrentUserManager.shared_instance)
-
-      navController = UINavigationController.alloc.initWithRootViewController(StoriesController.new)
-      menuController = MenuController.alloc.init
-      sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
-      sideMenuController.parallaxEnabled = false
-      sideMenuController.panGestureEnabled = false
-      sideMenuController.contentViewScaleValue = 1
-      sideMenuController.contentViewInPortraitOffsetCenterX = 425
-      sideMenuController.delegate = UIApplication.sharedApplication.delegate
-
-      view.window.rootViewController = sideMenuController
-    else
-      hideProgress
-      create_login_button
+      start_app
     end
+  end
+
+  def start_app
+    CurrentUserManager.init_with_user(GPlusUser.new(GPPSignIn.sharedInstance))
+    FirebaseManager.init_with_user(CurrentUserManager.shared_instance)
+
+    navController = UINavigationController.alloc.initWithRootViewController(StoriesController.new)
+    menuController = MenuController.alloc.init
+    sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
+    sideMenuController.parallaxEnabled = false
+    sideMenuController.panGestureEnabled = false
+    sideMenuController.contentViewScaleValue = 1
+    sideMenuController.contentViewInPortraitOffsetCenterX = 425
+    sideMenuController.delegate = UIApplication.sharedApplication.delegate
+
+    view.window.rootViewController = sideMenuController
   end
 
 end
