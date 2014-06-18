@@ -100,9 +100,11 @@ class NewStoryController < Formotion::FormController
 
   def createOptionsMenu
     @recordItem = REMenuItem.alloc.initWithTitle('Record', subtitle: 'Speak instead of typing', image: nil, highlightedImage: nil, action: lambda do |item|
+      dismissKeyboard
       recordContent
     end)
     @saveItem = REMenuItem.alloc.initWithTitle('Save', subtitle: 'Save your story', image: nil, highlightedImage: nil, action: lambda do |item|
+      dismissKeyboard
       createStory
     end)
     @menu = REMenu.alloc.initWithItems([@recordItem, @saveItem])
