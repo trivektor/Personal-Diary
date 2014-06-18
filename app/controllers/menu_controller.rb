@@ -3,7 +3,7 @@ class MenuCell < UITableViewCell
   HEIGHT = 56
   SELECTED_BACKGROUND_COLOR = '#ff9900'.uicolor;
   ICON_FONT = FontAwesome.fontWithSize(17)
-  SEPARATOR_COLOR = '#fff'.uicolor(0.3)
+  SEPARATOR_COLOR = '#fff'.uicolor(0.14)
 
   attr_accessor :iconLabel, :textLabel, :emailLabel, :image
 
@@ -73,7 +73,7 @@ class MenuCell < UITableViewCell
     end
 
     if indexPath.row < 4
-      bottomBorder = UIView.alloc.initWithFrame([[0, 55], [200, 0.8]])
+      bottomBorder = UIView.alloc.initWithFrame([[0, 55], [230, 0.5]])
       bottomBorder.backgroundColor = SEPARATOR_COLOR
       contentView.addSubview(bottomBorder)
     end

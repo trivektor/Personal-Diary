@@ -44,7 +44,8 @@ class LoginController < UIViewController
       sideMenuController = RESideMenu.alloc.initWithContentViewController(navController, menuViewController: menuController)
       sideMenuController.parallaxEnabled = false
       sideMenuController.panGestureEnabled = false
-      sideMenuController.contentViewScaleValue = 0.8
+      sideMenuController.contentViewScaleValue = 1
+      sideMenuController.contentViewInPortraitOffsetCenterX = 425
       sideMenuController.delegate = UIApplication.sharedApplication.delegate
 
       view.window.rootViewController = sideMenuController
