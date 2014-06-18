@@ -1,14 +1,15 @@
 class LoginController < UIViewController
 
+  include UIViewControllerExtension
+
   def viewDidLoad
     super
     navigationItem.title = 'Login'
-
+    showProgress
     init_gpp_signin
-    create_login_button
     GPPSignIn.sharedInstance.trySilentAuthentication
   end
-  
+
   def init_gpp_signin
     shared_instance = GPPSignIn.sharedInstance
     shared_instance.shouldFetchGoogleUserID = true
@@ -34,7 +35,7 @@ class LoginController < UIViewController
     if error
       NSLog "auth error"
       NSLog error.inspect
-    else
+    elsif auth
       CurrentUserManager.init_with_user(GPlusUser.new(GPPSignIn.sharedInstance))
       FirebaseManager.init_with_user(CurrentUserManager.shared_instance)
 
@@ -47,6 +48,9 @@ class LoginController < UIViewController
       sideMenuController.delegate = UIApplication.sharedApplication.delegate
 
       view.window.rootViewController = sideMenuController
+    else
+      hideProgress
+      create_login_button
     end
   end
 

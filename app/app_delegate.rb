@@ -13,9 +13,7 @@ class AppDelegate
     cdq.setup
     customizeAppearances
 
-    controller = GPPSignIn.sharedInstance.trySilentAuthentication ? StoriesController.new : LoginController.new
-
-    @window.rootViewController = UINavigationController.alloc.initWithRootViewController(controller)
+    @window.rootViewController = UINavigationController.alloc.initWithRootViewController(LoginController.new)
     @window.makeKeyAndVisible
 
     true
