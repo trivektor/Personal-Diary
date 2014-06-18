@@ -53,10 +53,14 @@ class MenuCell < UITableViewCell
         currentUser = CurrentUserManager.shared_instance
 
         # TODO: figure out how to get user Google+ profile picture to display here
-        userImageData = NSData.dataWithContentsOfURL(currentUser.profile_picture.nsurl)
-        @image.image = UIImage.imageWithData(userImageData)
+        if currentUser.profile_picture
+          userImageData = NSData.dataWithContentsOfURL(currentUser.profile_picture.nsurl)
+          @image.image = UIImage.imageWithData(userImageData)
+        end
 
-        @textLabel.text = currentUser.display_name
+        if currentUser.display_name
+          @textLabel.text = currentUser.display_name
+        end
         @textLabel.frame = CGRectMake(56, 1, 243, 21)
         @emailLabel.text = currentUser.email
       else

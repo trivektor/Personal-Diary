@@ -20,10 +20,12 @@ class GPlusUser
   end
 
   def display_name
+    return unless google_plus_user
     google_plus_user.displayName
   end
 
   def profile_picture
+    return unless google_plus_user
     google_plus_user.image.url
   end
 
