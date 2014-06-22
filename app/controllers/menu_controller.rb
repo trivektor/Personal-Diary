@@ -131,7 +131,7 @@ class MenuController < UIViewController
     if indexPath.row == 1
       # Signout
       GPPSignIn.sharedInstance.signOut
-      view.window.rootViewController = UINavigationController.alloc.initWithRootViewController(LoginController.new)
+      UIApplication.sharedApplication.delegate.window.rootViewController = UINavigationController.alloc.initWithRootViewController(LoginController.new)
     end
   end
 
