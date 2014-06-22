@@ -1,7 +1,7 @@
 EMERALD_COLOR = '#2ecc71'.uicolor
 NEPHRITIS_COLOR = '#2cc36b'.uicolor
 ALIZARIN_COLOR = '#e74c3c'.uicolor
-PETER_RIVER_COLOR = '#55acee'.uicolor
+PETER_RIVER_COLOR = '#42c0fb'.uicolor
 NAVBAR_TINT_COLOR = '#2ecc71'.uicolor
 NAVBAR_BUTTON_TINT_COLOR = '#fff'.uicolor
 NAVBAR_FONT = 'HelveticaNeue'.uifont(22)
