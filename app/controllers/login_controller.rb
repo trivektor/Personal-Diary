@@ -8,10 +8,7 @@ class LoginController < UIViewController
     showProgress
     init_gpp_signin
 
-    if GPPSignIn.sharedInstance.hasAuthInKeychain
-      start_app
-    else
-      hideProgress
+    unless GPPSignIn.sharedInstance.trySilentAuthentication
       create_login_button
     end
   end
@@ -38,6 +35,8 @@ class LoginController < UIViewController
   end
 
   def finishedWithAuth(auth, error: error)
+    @loginBtn.hidden = true if @loginBtn
+
     if error
       hideProgress
       NSLog "auth error"
@@ -60,7 +59,7 @@ class LoginController < UIViewController
     sideMenuController.contentViewInPortraitOffsetCenterX = 425
     sideMenuController.delegate = UIApplication.sharedApplication.delegate
 
-    view.window.rootViewController = sideMenuController
+    UIApplication.sharedApplication.delegate.window.rootViewController = sideMenuController
   end
 
 end
