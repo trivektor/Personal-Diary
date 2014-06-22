@@ -32,6 +32,15 @@ Motion::Project::App.setup do |app|
   app.vendor_project('vendor/GoogleOpenSource.framework', :static, :products => ['GoogleOpenSource'] , :headers_dir => 'Headers')
   app.vendor_project('vendor/GooglePlus.framework', :static, :products => ['GooglePlus'] , :headers_dir => 'Headers')
 
+  # Fonts
+  app.fonts = [
+    'JosefinSans-Regular.ttf',
+    'JosefinSans-Light.ttf',
+    'JosefinSans-LightItalic.ttf',
+    'JosefinSans-SemiBold.ttf',
+    'JosefinSans-Thin.ttf'
+  ]
+
   # Frameworks
   %w(
     UIKit
