@@ -65,9 +65,9 @@ class StoriesController < BaseController
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     cell.textLabel.text = story.title
     cell.textLabel.textColor = NEPHRITIS_COLOR
-    cell.textLabel.font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 20)
+    cell.textLabel.font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 21)
     cell.detailTextLabel.text = story.time_and_location
-    cell.detailTextLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 17)
+    cell.detailTextLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 16)
     cell.selectionStyle = UITableViewCellSelectionStyleNone
     cell.delegate = self
     cell

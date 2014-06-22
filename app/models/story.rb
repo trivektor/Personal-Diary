@@ -20,7 +20,7 @@ class Story
   end
 
   def creation_time_ago
-    NSDate.dateWithTimeIntervalSince1970(timestamp).timeAgo
+    Time.at(timestamp).strftime('%Y-%m-%d').to_s
   end
 
   def location
