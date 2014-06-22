@@ -33,7 +33,7 @@ Motion::Project::App.setup do |app|
   app.vendor_project('vendor/GooglePlus.framework', :static, :products => ['GooglePlus'] , :headers_dir => 'Headers')
 
   # Fonts
-  app.fonts = [
+  app.fonts += [
     'JosefinSans-Regular.ttf',
     'JosefinSans-Light.ttf',
     'JosefinSans-LightItalic.ttf',

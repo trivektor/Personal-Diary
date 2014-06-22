@@ -21,10 +21,10 @@ class MenuCell < UITableViewCell
     @iconLabel.backgroundColor = clearColor
     @iconLabel.font = ICON_FONT
 
-    @textLabel = UILabel.alloc.initWithFrame([[56, 15], [243, 21]])
+    @textLabel = UILabel.alloc.initWithFrame([[56, 16], [243, 21]])
     @textLabel.textColor = '#fff'.uicolor
     @textLabel.backgroundColor = clearColor
-    @textLabel.font = 'HelveticaNeue-Light'.uifont(18)
+    @textLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 19)
 
     contentView.addSubview(@iconLabel)
     contentView.addSubview(@textLabel)
@@ -40,12 +40,12 @@ class MenuCell < UITableViewCell
     case indexPath.row
     when 0
       if CurrentUserManager.shared_instance
-        @image = UIImageView.alloc.initWithFrame([[10, 5], [36, 36]])
+        @image = UIImageView.alloc.initWithFrame([[10, 4], [36, 36]])
 
         @emailLabel = UILabel.alloc.initWithFrame([[56, 24], [243, 18]])
         @emailLabel.textColor = '#ccc'.uicolor
         @emailLabel.backgroundColor = UIColor.clearColor
-        @emailLabel.font = 'HelveticaNeue-Thin'.uifont(14)
+        @emailLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 17)
 
         contentView.addSubview(@image)
         contentView.addSubview(@emailLabel)
@@ -61,7 +61,7 @@ class MenuCell < UITableViewCell
         if currentUser.display_name
           @textLabel.text = currentUser.display_name
         end
-        @textLabel.frame = CGRectMake(56, 1, 243, 21)
+        @textLabel.frame = [[56, 1], [243, 21]]
         @emailLabel.text = currentUser.email
       else
         @textLabel.text = 'Login'

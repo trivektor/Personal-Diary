@@ -5,8 +5,6 @@ class StoriesController < BaseController
   ROW_HEIGHT = 70
   VIEW_BUTTON_TITLE = 'view'
   DELETE_BUTTON_TITLE = 'delete'
-  TITLE_FONT = 'HelveticaNeue'.uifont(17)
-  CREATION_DATE_FONT = 'HelveticaNeue-Thin'.uifont(14)
 
   def viewDidLoad
     @stories = []
@@ -67,9 +65,9 @@ class StoriesController < BaseController
     story = tableView(tableView, storyForRowAtIndexPath: indexPath)
     cell.textLabel.text = story.title
     cell.textLabel.textColor = NEPHRITIS_COLOR
-    cell.textLabel.font = TITLE_FONT
+    cell.textLabel.font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 20)
     cell.detailTextLabel.text = story.time_and_location
-    cell.detailTextLabel.font = CREATION_DATE_FONT
+    cell.detailTextLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 17)
     cell.selectionStyle = UITableViewCellSelectionStyleNone
     cell.delegate = self
     cell

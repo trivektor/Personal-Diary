@@ -14,6 +14,9 @@ FACEBOOK_PERMISSIONS = %w(email user_birthday publish_actions)
 FIREBASE_URL = 'http://personaldiary.firebaseio.com'
 SPINKIT_COLOR = '#2ecc71'.uicolor
 
+APP_FONT_REGULAR = 'JosefinSans'
+APP_FONT_SEMI_BOLD = 'JosefinSans-SemiBold'
+APP_FONT_BOLD = 'JosefinSans-Bold'
 GPP_CLIENT_ID = '282668132672-jn9aosrggrfdeg59vg8m8ap22mjg6jb2.apps.googleusercontent.com'
 
 # Google+ scopes

@@ -28,7 +28,7 @@ class AppDelegate
     UINavigationBar.appearance.setBarTintColor(EMERALD_COLOR)
     UIBarButtonItem.appearance.setTintColor(NAVBAR_FONT_COLOR)
     UINavigationBar.appearance.setTitleTextAttributes(
-      UITextAttributeFont => NAVBAR_FONT,
+      UITextAttributeFont => UIFont.fontWithName(APP_FONT_BOLD, size: 25),
       NSForegroundColorAttributeName => NAVBAR_FONT_COLOR
     )
 
@@ -38,7 +38,7 @@ class AppDelegate
     # CRToastManager
     CRToastManager.setDefaultOptions(
       'kCRToastNotificationTypeKey' => CRToastTypeNavigationBar,
-      'kCRToastFontKey' => TOAST_FONT,
+      'kCRToastFontKey' => UIFont.fontWithName(APP_FONT_BOLD, size: 25),
       'kCRToastTextColorKey' => EMERALD_COLOR,
       'kCRToastBackgroundColorKey' => '#fff'.uicolor
     )
