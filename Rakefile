@@ -74,16 +74,13 @@ Motion::Project::App.setup do |app|
   }]
 
   app.pods do
-    pod 'Facebook-iOS-SDK'
     pod 'RESideMenu'
     pod 'FontAwesomeIconFactory'
     pod 'FontAwesome+iOS'
     pod 'AMScrollingNavbar'
     pod 'CRToast'
     pod 'MSCMoreOptionTableViewCell'
-    pod 'CXAlertView'
     pod 'NSDate+TimeAgo'
-    pod 'WebViewJavascriptBridge'
     pod 'GRMustache'
     pod 'SpinKit'
     pod 'BFNavigationBarDrawer', :git => 'https://github.com/DrummerB/BFNavigationBarDrawer'
