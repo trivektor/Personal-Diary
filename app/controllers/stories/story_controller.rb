@@ -12,6 +12,11 @@ class StoryController < BaseController
   def viewDidLoad
     performHousekeepingTasks
     setupWebViewForm
+    createBarButtonItems
+  end
+
+  def createBarButtonItems
+    navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'pencil', touchHandler: 'editStory')
   end
 
   def performHousekeepingTasks
@@ -25,17 +30,15 @@ class StoryController < BaseController
     @webView.loadHTMLString(html, baseURL: NSURL.fileURLWithPath(NSBundle.mainBundle.bundlePath))
   end
 
+  def editStory
+    controller = EditStoryController.new
+    controller.story = @story
+    navigationController.pushViewController(controller, animated: true)
+  end
+
 end
 
-class NewStoryController < Formotion::FormController
-
-  include UIViewControllerExtension
-
-  SPEECH_TIMEOUT = 20
-  TEMPLATE = 'templates/new_story'
-  TEXTVIEW_FONT = 'HelveticaNeue-Light'.uifont(18)
-
-  attr_accessor :firebase, :story
+class StoryFormController < Formotion::FormController
 
   def init
     @form = Formotion::Form.new(
@@ -46,7 +49,7 @@ class NewStoryController < Formotion::FormController
             {
               key: :title,
               type: :string,
-              font: {name: 'HelveticaNeue-Light', size: 18},
+              font: {name: APP_FONT_SEMI_BOLD, size: 18},
               text_alignment: 'left',
               placeholder: 'Title of Your Story',
               auto_correction: :no
@@ -60,7 +63,7 @@ class NewStoryController < Formotion::FormController
               key: :content,
               type: :text,
               row_height: 300,
-              font: {name: 'HelveticaNeue-Light', size: 18},
+              font: {name: APP_FONT_SEMI_BOLD, size: 18},
               placeholder: 'Content of Your Story',
               auto_correction: :no
             }
@@ -70,6 +73,39 @@ class NewStoryController < Formotion::FormController
     )
 
     super.initWithForm(@form)
+  end
+
+end
+
+class EditStoryController < StoryFormController
+
+  attr_accessor :firebase, :story
+
+  def init
+    super
+    self
+  end
+
+  def viewDidLoad
+    super
+    navigationItem.title = 'Edit Story'
+    view.backgroundColor = '#fff'.uicolor
+  end
+
+end
+
+class NewStoryController < StoryFormController
+
+  include UIViewControllerExtension
+
+  SPEECH_TIMEOUT = 20
+  TEMPLATE = 'templates/new_story'
+
+  attr_accessor :firebase, :story
+
+  def init
+    super
+    self
   end
 
   def setupSpeechRecognition
@@ -87,7 +123,7 @@ class NewStoryController < Formotion::FormController
     @titleTextField = @form.row_for_index_path(NSIndexPath.indexPathForRow(0, inSection: 0))
 
     performHousekeepingTasks
-    createOptionsMenu
+    create_options_menu
   end
 
   def performHousekeepingTasks
@@ -98,19 +134,28 @@ class NewStoryController < Formotion::FormController
     navigationItem.rightBarButtonItem = createFontAwesomeButton(icon: 'gear', touchHandler: 'toggleOptionsMenu')
   end
 
-  def createOptionsMenu
+  def create_options_menu
+    title_font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 22)
+    subtitle_font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 18)
+
     @recordItem = REMenuItem.alloc.initWithTitle('Record', subtitle: 'Speak instead of typing', image: nil, highlightedImage: nil, action: lambda do |item|
       dismissKeyboard
       recordContent
     end)
+    @recordItem.font = title_font
+    @recordItem.subtitleFont = subtitle_font
+
     @saveItem = REMenuItem.alloc.initWithTitle('Save', subtitle: 'Save your story', image: nil, highlightedImage: nil, action: lambda do |item|
       dismissKeyboard
-      createStory
+      create_story
     end)
+    @saveItem.font = title_font
+    @saveItem.subtitleFont = subtitle_font
+
     @menu = REMenu.alloc.initWithItems([@recordItem, @saveItem])
   end
 
-  def createStory
+  def create_story
     showProgress
     attrs = @form.render
 
