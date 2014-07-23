@@ -49,7 +49,7 @@ class StoryFormController < Formotion::FormController
             {
               key: :title,
               type: :string,
-              font: {name: APP_FONT_SEMI_BOLD, size: 18},
+              font: {name: APP_FONT_REGULAR, size: 18},
               text_alignment: 'left',
               placeholder: 'Title of Your Story',
               auto_correction: :no
@@ -63,7 +63,7 @@ class StoryFormController < Formotion::FormController
               key: :content,
               type: :text,
               row_height: 300,
-              font: {name: APP_FONT_SEMI_BOLD, size: 18},
+              font: {name: APP_FONT_REGULAR, size: 18},
               placeholder: 'Content of Your Story',
               auto_correction: :no
             }
@@ -135,8 +135,8 @@ class NewStoryController < StoryFormController
   end
 
   def create_options_menu
-    title_font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 22)
-    subtitle_font = UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 18)
+    title_font = UIFont.fontWithName(APP_FONT_REGULAR, size: 22)
+    subtitle_font = UIFont.fontWithName(APP_FONT_REGULAR, size: 18)
 
     @recordItem = REMenuItem.alloc.initWithTitle('Record', subtitle: 'Speak instead of typing', image: nil, highlightedImage: nil, action: lambda do |item|
       dismissKeyboard

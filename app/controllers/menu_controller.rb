@@ -24,7 +24,7 @@ class MenuCell < UITableViewCell
     @textLabel = UILabel.alloc.initWithFrame([[56, 16], [243, 21]])
     @textLabel.textColor = '#fff'.uicolor
     @textLabel.backgroundColor = clearColor
-    @textLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 19)
+    @textLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 17)
 
     contentView.addSubview(@iconLabel)
     contentView.addSubview(@textLabel)
@@ -45,7 +45,7 @@ class MenuCell < UITableViewCell
         @emailLabel = UILabel.alloc.initWithFrame([[56, 24], [243, 18]])
         @emailLabel.textColor = '#ccc'.uicolor
         @emailLabel.backgroundColor = UIColor.clearColor
-        @emailLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 17)
+        @emailLabel.font = UIFont.fontWithName(APP_FONT_REGULAR, size: 15)
 
         contentView.addSubview(@image)
         contentView.addSubview(@emailLabel)

@@ -15,7 +15,7 @@ FIREBASE_URL = 'http://personaldiary.firebaseio.com'
 SPINKIT_COLOR = '#2ecc71'.uicolor
 
 APP_FONT_REGULAR = 'Lato-Light'
-APP_FONT_SEMI_BOLD = 'Lato-Bold'
+APP_FONT_SEMI_BOLD = 'Lato-Regular'
 APP_FONT_BOLD = 'Lato-Regular'
 GPP_CLIENT_ID = '282668132672-jn9aosrggrfdeg59vg8m8ap22mjg6jb2.apps.googleusercontent.com'
 

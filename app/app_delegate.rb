@@ -28,10 +28,10 @@ class AppDelegate
     UINavigationBar.appearance.setBarTintColor(EMERALD_COLOR)
     UIBarButtonItem.appearance.setTintColor(NAVBAR_FONT_COLOR)
     UIBarButtonItem.appearance.setTitleTextAttributes({
-      UITextAttributeFont => UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 19)
+      UITextAttributeFont => UIFont.fontWithName(APP_FONT_REGULAR, size: 19)
     }, forState: UIControlStateNormal)
     UINavigationBar.appearance.setTitleTextAttributes(
-      UITextAttributeFont => UIFont.fontWithName(APP_FONT_SEMI_BOLD, size: 25),
+      UITextAttributeFont => UIFont.fontWithName(APP_FONT_REGULAR, size: 25),
       NSForegroundColorAttributeName => NAVBAR_FONT_COLOR
     )
 
