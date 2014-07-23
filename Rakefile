@@ -34,6 +34,10 @@ Motion::Project::App.setup do |app|
 
   # Fonts
   app.fonts += [
+    'Lato-Hai.ttf',
+    'Lato-Lig.ttf',
+    'Lato-Reg.ttf',
+    'Lato-Bol.ttf',
     'JosefinSans-Regular.ttf',
     'JosefinSans-Light.ttf',
     'JosefinSans-LightItalic.ttf',

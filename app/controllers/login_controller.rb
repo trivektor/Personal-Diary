@@ -4,6 +4,7 @@ class LoginController < UIViewController
 
   def viewDidLoad
     super
+    showSplashScreen
     navigationItem.title = 'Login'
     showProgress
     init_gpp_signin
@@ -11,6 +12,11 @@ class LoginController < UIViewController
     unless GPPSignIn.sharedInstance.trySilentAuthentication
       create_login_button
     end
+  end
+
+  def showSplashScreen
+    @splashView = CBZSplashView.alloc.initWithIcon('425-notepad.png'.uiimage, backgroundColor: EMERALD_COLOR.uicolor)
+    view.addSubview(@splashView)
   end
 
   def init_gpp_signin
