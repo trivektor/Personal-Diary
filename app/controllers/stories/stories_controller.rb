@@ -139,12 +139,7 @@ class StoriesController < BaseController
   end
 
   def createStory
-    controller = UINavigationController.alloc.initWithRootViewController(NewStoryController.new)
-    controller.modalPresentationStyle = UIModalPresentationCustom
-    self.animator = ZFModalTransitionAnimator.alloc.initWithModalViewController(controller)
-    animator.direction = ZFModalTransitonDirectionBottom
-    controller.transitioningDelegate = animator
-    presentViewController(controller, animated: true, completion: nil)
+    navigationController.pushViewController(StoryComposeController.new, animated: true)
   end
 
 end

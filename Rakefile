@@ -48,6 +48,7 @@ Motion::Project::App.setup do |app|
   # Frameworks
   %w(
     UIKit
+    Foundation
     CoreFoundation
     CoreGraphics
     CoreMedia
@@ -55,6 +56,7 @@ Motion::Project::App.setup do |app|
     CoreLocation
     CoreData
     CoreText
+    UIKit
     SystemConfiguration
     QuartzCore
     Security
@@ -91,6 +93,7 @@ Motion::Project::App.setup do |app|
     pod 'REMenu'
     pod 'ZFDragableModalTransition'
     pod 'CBZSplashView'
+    pod 'ZSSRichTextEditor'
   end
 
 end

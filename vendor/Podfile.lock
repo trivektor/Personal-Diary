@@ -14,6 +14,7 @@ PODS:
   - RESideMenu (3.4)
   - SpinKit (1.0.1)
   - ZFDragableModalTransition (0.2)
+  - ZSSRichTextEditor (0.3)
 
 DEPENDENCIES:
   - AMScrollingNavbar
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - RESideMenu
   - SpinKit
   - ZFDragableModalTransition
+  - ZSSRichTextEditor
 
 EXTERNAL SOURCES:
   BFNavigationBarDrawer:
@@ -49,5 +51,6 @@ SPEC CHECKSUMS:
   RESideMenu: a583194f1091b0222a1535864de04227ff497618
   SpinKit: 563a00196a87d789b16e3592265f0dfa9c3fb9db
   ZFDragableModalTransition: 734279090d537b1f701b6efdccd41b0f78503de9
+  ZSSRichTextEditor: 6de30dc4b5a63bdab54419ae445377cb2923e461
 
 COCOAPODS: 0.33.1
